@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Product</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../Office Work/font/icofont/icofont.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans";
+        }
+
+        body {
+            background-color: #F4F4F4;
+        }
+        .container {
+            max-width: 1640px;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        /*all product*/
+        .popularProductHeader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 34px;
+        }
+        .popularProductHeaderWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-width: 200px;
+        }
+        .popularProductHeaderImage {
+            width: 48.74px;
+            height: 34px;
+            position: absolute;
+            left: 18px;
+        }
+        .popularProductTitle {
+            font-size: 18px;
+            line-height: 14px;
+            font-weight: 700;
+            position: absolute;
+            right: 28px;
+        }
+        .popularProductsCartWrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-content: center;
+            grid-gap: 10px;
+            padding-top: 15px;
+
+        }
+        .popularProductsSingleProduct {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s all;
+        }
+
+        .popularProductsSingleProductTop {
+            position: relative;
+        }
+
+        .popularProductsProductImg {
+            width: 100%;
+            padding: 18px 18px 0;
+        }
+
+        .popularProductsCartTop {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
+
+        .popularNewLabel {
+            position: absolute;
+            top: 13px;
+            left: 14px;
+            font-size: 10px;
+            line-height: 14px;
+            font-weight: 400;
+            border-radius: 3px;
+            background-color: #80BB01;
+            text-align: center;
+            padding: 3px 6px;
+            color: #fff;
+        }
+        .popularProductsTopWishlistCartIconBox {
+            position: absolute;
+            top: 13px;
+            right: 12px;
+        }
+        .popularProductsQuickViewIconLabel,
+        .popularProductsWishlistIconLabel {
+            display: none;
+        }
+        .popularProductsQuickViewIconBox {
+            position: absolute;
+            top:34px;
+            right: 12px;
+        }
+        .popularProductsTopWishlistCartIconBox,
+        .popularProductsQuickViewIconBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 19px;
+            width: 20px;
+            border-radius: 50px;
+            background-color: #F5F5F5;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .popularProductsQuickViewIcon,
+        .popularProductWishlistIcon {
+            width: 8.57px;
+            height: 7.53px;
+        }
+        .popularProductSingleProductBottom {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .popularProductsRating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 12px;
+        }
+        .popularProductsRating .yellow {
+            color: #FDD835;
+        }
+        .popularProductsRating .colorless {
+            color: #E4E4E4;
+        }
+        .popularProductsSingleProductName {
+            font-size: 12px;
+            line-height: 17px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .popularRegularPriceAndDeletePrice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .popularProductsSingleProductRegularPrice {
+            font-size: 10px;
+            line-height: 13px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .popularProductsSingleProductDeletePrice {
+            display: none;
+        }
+        .popularProductsCartBtn {
+            width: 96px;
+            height: 21px;
+            border-radius: 50px;
+            background-color: #80BB01;
+            border: none;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            outline: none;
+        }
+        .popularProductSectionButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+        }
+        .popularProductsViewAllBtn {
+            width: 150px;
+            height: 33px;
+            display: block;
+            border: 1px solid #000;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 18px;
+            outline: none;
+        }
+        .popularProductsCartBtn:hover {
+            background-color: #242424;
+        }
+        .popularProductsViewAllBtn:hover {
+            background-color: #242424;
+            color:#fff;
+            transition: all .2s ease-in-out;
+            transform: scale(1.2);
+        }
+
+        @media screen and (min-width: 769px) {
+
+            .popularProductHeader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 76px;
+            }
+            .popularProductHeaderWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                min-width: 325px;
+            }
+            .popularProductHeaderImage {
+                height: 76.13px;
+                width: 107.21px;
+                position: absolute;
+                left: 10px;
+            }
+            .popularProductTitle {
+                position: absolute;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 32px;
+                color: #242424;
+                right: 55px;
+            }
+            .popularProductsCartWrapper {
+                grid-gap: 40px;
+                grid-template-columns: repeat(4, 1fr);
+                padding-top: 30px;
+            }
+
+            .popularProductsSingleProduct:hover {
+                box-shadow: 2px 2px 5px rgba(44, 44, 44, 0.1), -2px -2px 5px rgba(44, 44, 44, 0.1);
+            }
+
+            .popularProductsTopWishlist {
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s all;
+            }
+            .popularNewLabel {
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                font-size: 16px;
+                line-height: 20px;
+                font-weight: 400;
+                border-radius: 3px;
+                background-color: #80BB01;
+                text-align: center;
+                color: #fff;
+            }
+            .popularProductsProductImg {
+                width: 100%;
+                padding: 40px 40px 0;
+            }
+            .popularProductsTopWishlistCartIconBox {
+                position: absolute;
+                top: 30px;
+                right: 25px;
+                margin-bottom: 14px;
+            }
+            .popularProductsTopWishlistCartIconBox,
+            .popularProductsQuickViewIconBox {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                width: 30px;
+                border-radius: 50px;
+                background-color: #F5F5F5;
+                cursor: pointer;
+            }
+
+            .popularProductsQuickViewIconBox {
+                position: absolute;
+                top: 75px;
+            }
+            .popularProductsQuickViewIcon, .popularProductWishlistIcon {
+                width: 13.13px;
+                height: 11.54px;
+                z-index: 1;
+            }
+            .popularProductsSingleProduct:hover .popularProductsTopWishlist {
+                transform: translateX(0);
+                visibility: visible;
+                opacity: 1;
+            }
+            .popularProductsCartLabel {
+                background-color: #F5F5F5;
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                border-radius: 50px;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 18px;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s all;
+                height: 30px;
+                width: 75px;
+                padding-left: 10px;
+            }
+            .popularProductsTopWishlistCartIconBox:hover .popularProductsWishlistIconLabel {
+                opacity: 1;
+                visibility: visible;
+                width: 85px;
+            }
+            .popularProductsTopWishlistCartIconBox:hover .popularProductsQuickViewIconLabel {
+                opacity: 1;
+                visibility: visible;
+                width: 105px;
+            }
+
+            .popularProductsSingleProduct:hover .popularProductsTopWishlist {
+                transform: translateX(0);
+                visibility: visible;
+                opacity: 1;
+            }
+            .popularProductsCartIconBox {
+                display: none;
+            }
+
+            .popularProductsQuickViewIconBox {
+                display: flex;
+            }
+            .popularProductSingleProductBottom {
+                margin-bottom: 30px;
+            }
+            .popularProductsRating {
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 35px;
+            }
+
+            .popularProductsSingleProductName {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 32px;
+                color: #242424;
+            }
+            .popularRegularPriceAndDeletePrice {
+                position: relative;
+            }
+            .popularProductsSingleProductRegularPrice {
+                font-size: 22px;
+                line-height: 32px;
+                font-weight: 600;
+                text-align: center;
+            }
+            .popularProductsSingleProductDeletePrice {
+                display: block;
+                position: relative;
+                font-size: 14px;
+                font-weight: 400;
+                color: #989898;
+            }
+            .popularProductsSingleProductDeletePrice::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                transform: translateY(-50%);
+                height: 1px;
+                width: 100%;
+                background-color: #989898;
+            }
+
+            .popularProductsSingleProductPrice {
+                transform: translateY(0px);
+                transition: 0.3s all;
+            }
+
+            .popularProductsSingleProduct:hover .popularProductsSingleProductPrice {
+                transform: translateY(0, -10px);
+                visibility: hidden;
+                opacity: 0;
+            }
+            .popularProductsCartBtn {
+                position: absolute;
+                bottom: -35px;
+                height: 42px;
+                width: 150px;
+                border: none;
+                opacity: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 18px;
+                text-align: center;
+                visibility: hidden;
+                transition: 0.3s all;
+                cursor: pointer;
+                border-radius: 50px;
+                background-color: #80BB01;
+            }
+
+            .popularProductsCartBtn:focus {
+                outline: none;
+            }
+
+            .popularProductsSingleProduct:hover .popularProductsCartBtn {
+                transform: translateY(-38px);
+                opacity: 1;
+                visibility: visible;
+            }
+            .popularProductSectionButton {
+                padding-top: 50px;
+            }
+            .popularProductsViewAllBtn {
+                width: 200px;
+                height: 45px;
+                display: block;
+                border: 1px solid #000;
+                border-radius: 50px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 18px;
+            }
+            .popularProductsViewAllBtn:hover {
+                background-color: #242424;
+                color:#fff;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="popularProductHeader">
+                <div class="popularProductHeaderWrapper">
+                    <img class="popularProductHeaderImage" src="./images/qqq.png" alt="">
+                    <span class="popularProductTitle">Popular Product</span>
+                </div>
+            </div>
+            <div class="popularProductsCartWrapper">
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <p class="popularularProductsSingleProductName">Organic Cavendish Banana</p>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image2.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <p class="popularularProductsSingleProductName">Organic Cavendish Banana</p>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image3.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <p class="popularularProductsSingleProductName">Organic Cavendish Banana</p>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image4.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <p class="popularularProductsSingleProductName">Organic Cavendish Banana</p>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popularProductSectionButton">
+                <button class="popularProductsViewAllBtn">View All Products</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

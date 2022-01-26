@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Breadcrumb</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&      display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../Office Work/font/icofont/icofont.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans";
+        }
+
+        body {
+            background-color: #F4F4F4;
+        }
+        .container {
+            max-width: 1640px;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        .homeBreadcrumb {
+            background-color: rgb(167 186 235 / 10%);
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .homeBreadcrumbText {
+            font-size: 24px;
+            line-height: 44px;
+            font-weight: 600;
+            color: #282828;
+        }
+        .homeBreadcrumbText:hover {
+            color: #80BB01;
+            cursor: pointer;
+        }
+        .breadcrumbNavItem {
+            font-family: "Poppins";
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 400;
+            color: #A4B0BE;
+        }
+        .breadcrumbNavItem1 {
+            color: #A4B0BE;
+        }
+        .breadcrumbNavItem2 {
+            display: none;
+        }
+        @media screen and (min-width: 768px) {
+            .homeBreadcrumbWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 50px;
+            }
+            .homeBreadcrumbText {
+                font-size: 32px;
+                line-height: 39px;
+                font-weight: 700;
+                color: #282828;
+            }
+            .breadcrumbNav {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .breadcrumbNavItem {
+                font-family: "Poppins";
+                font-size: 16px;
+                line-height: 19px;
+                font-weight: 500;
+                color: #A4B0BE;
+            }
+            .breadcrumbNavItem2 {
+                display: block;
+                margin: 0 17.5px;
+            }
+            .breadcrumbNavItem1 {
+                display: none;
+            }
+        }
+        .categories {
+            padding-top: 100px;
+        }
+        .categoriesHeader {
+            display: none;
+        }
+        .categoriesBody {
+            overflow-x: scroll;
+        }
+        .categoriesBody::-webkit-scrollbar {
+            display: none;
+        }
+        .categoriesItemList {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 175%;
+        }
+
+        .categoriesItems {
+            text-align: center;
+            width: calc(25% - 10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .categoriesItemsBox {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(128, 187, 1 , 25%);
+            border-radius: 50%;
+            height: 70px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .categoriesItemsName {
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 14px;
+            margin-top: 3px;
+        }
+        .categoriesImage {
+            width: 50px;
+        }
+        @media screen and (min-width: 425px) {
+            .categoriesItemsBox {
+                background-color: #FFFFFF;
+                border: 1px solid rgba(128, 187, 1 , 25%);
+                border-radius: 50%;
+                height: 84px;
+                width: 84px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .categoriesItemsName {
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 14px;
+                margin-top: 3px;
+            }
+            .categoriesImage {
+                width: 65px;
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .categoriesItemList {
+                width: 100%;
+            }
+            .categoriesBody {
+                padding-top: 50px;
+            }
+            .categoriesHeader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 76px;
+            }
+            .categoriesHeaderWrapper {
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: 325px;
+            }
+            .categoriesHeaderImage {
+                height: 76.13px;
+                width: 107.21px;
+                position: absolute;
+                left: 75px;
+            }
+            .categoriesTitle {
+                position: absolute;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 32px;
+                color: #242424;
+                right: 75px;
+            }
+        }
+
+        /*all product*/
+
+        .allProduct {
+            padding-top: 100px;
+        }
+        .allProductHeader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 34px;
+        }
+        .allProductHeaderWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-width: 200px;
+        }
+        .allProductHeaderImage {
+            width: 48.74px;
+            height: 34px;
+            position: absolute;
+            left: 45px;
+        }
+        .allProductTitle {
+            font-size: 18px;
+            line-height: 14px;
+            font-weight: 700;
+            position: absolute;
+            right: 45px;
+        }
+        .allProductsCartWrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-content: center;
+            grid-gap: 10px;
+            padding-top: 15px;
+
+        }
+        .allProductsSingleProduct {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s all;
+        }
+
+        .allProductsSingleProductTop {
+            position: relative;
+        }
+
+        .allProductsProductImg {
+            width: 100%;
+            padding: 18px 18px 0;
+        }
+
+        .allProductsCartTop {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
+
+        .allNewLabel {
+            position: absolute;
+            top: 13px;
+            left: 14px;
+            font-size: 5px;
+            line-height: 6px;
+            font-weight: 400;
+            border-radius: 3px;
+            background-color: #80BB01;
+            text-align: center;
+            padding: 3px 6px;
+            color: #fff;
+        }
+        .allProductsTopWishlistCartIconBox {
+            position: absolute;
+            top: 13px;
+            right: 12px;
+        }
+        .allProductsQuickViewIconLabel,
+        .allProductsWishlistIconLabel {
+            display: none;
+        }
+        .allProductsQuickViewIconBox {
+            position: absolute;
+            top:34px;
+            right: 12px;
+        }
+        .allProductsTopWishlistCartIconBox,
+        .allProductsQuickViewIconBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 13px;
+            width: 14px;
+            border-radius: 50px;
+            background-color: #F5F5F5;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .allProductsQuickViewIcon,
+        .allProductWishlistIcon {
+            width: 5.91px;
+            height: 5.19px;
+        }
+        .allProductSingleProductBottom {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .allProductsRating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: 400;
+            line-height: 19px;
+        }
+        .allProductsRating .yellow {
+            color: #FDD835;
+        }
+        .allProductsRating .colorless {
+            color: #E4E4E4;
+        }
+        .allProductsSingleProductName {
+            font-size: 7px;
+            line-height: 9px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .allRegularPriceAndDeletePrice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .allProductsSingleProductRegularPrice {
+            font-size: 8px;
+            line-height: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .allProductsSingleProductDeletePrice {
+            display: none;
+        }
+        .allProductsCartBtn {
+            width: 67.51px;
+            height: 18px;
+            border-radius: 50px;
+            background-color: #80BB01;
+            border: none;
+            font-size: 6px;
+            font-weight: 600;
+            line-height: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        .allProductsViewAllBtn {
+            width: 150px;
+            height: 33.66px;
+            display: block;
+            margin: 50px auto 100px;
+            border: 1px solid #000;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 18px;
+        }
+        .allProductsCartBtn:hover {
+            background-color: #242424;
+        }
+        .allProductsViewAllBtn:hover {
+            background-color: #242424;
+            color:#fff;
+            transition: all .2s ease-in-out;
+            transform: scale(1.5);
+        }
+
+        @media screen and (min-width: 769px) {
+
+            .allProduct {
+                padding-top: 60px;
+            }
+
+            .allProductHeader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 76px;
+            }
+            .allProductHeaderWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                min-width: 325px;
+            }
+            .allProductHeaderImage {
+                height: 76.13px;
+                width: 107.21px;
+                position: absolute;
+                left: 65px;
+            }
+            .allProductTitle {
+                position: absolute;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 32px;
+                color: #242424;
+                right: 75px;
+            }
+            .allProductsCartWrapper {
+                grid-gap: 40px;
+                grid-template-columns: repeat(4, 1fr);
+                padding-top: 30px;
+            }
+
+            .allProductsSingleProduct:hover {
+                box-shadow: 2px 2px 5px rgba(44, 44, 44, 0.1), -2px -2px 5px rgba(44, 44, 44, 0.1);
+            }
+
+            .allProductsTopWishlist {
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s all;
+            }
+            .allNewLabel {
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                font-size: 16px;
+                font-weight: 400;
+                border-radius: 3px;
+                background-color: #80BB01;
+                text-align: center;
+                padding:8px;
+                color: #fff;
+            }
+            .allProductsProductImg {
+                width: 100%;
+                padding: 40px 40px 0;
+            }
+            .allProductsTopWishlistCartIconBox {
+                position: absolute;
+                top: 30px;
+                right: 25px;
+                margin-bottom: 15px;
+            }
+            .allProductsTopWishlistCartIconBox,
+            .allProductsQuickViewIconBox {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                width: 30px;
+                border-radius: 50px;
+                background-color: #F5F5F5;
+                cursor: pointer;
+            }
+
+            .allProductsQuickViewIconBox {
+                position: absolute;
+                top: 75px;
+            }
+            .allProductsQuickViewIcon, .allProductWishlistIcon {
+                width: 13.13px;
+                height: 11.54px;
+                z-index: 1;
+            }
+            .allProductsSingleProduct:hover .allProductsTopWishlist {
+                transform: translateX(0);
+                visibility: visible;
+                opacity: 1;
+            }
+            .allProductsCartLabel {
+                background-color: #F5F5F5;
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                border-radius: 50px;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 18px;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s all;
+                height: 30px;
+                width: 75px;
+                padding-left: 10px;
+            }
+            .allProductsTopWishlistCartIconBox:hover .allProductsWishlistIconLabel {
+                opacity: 1;
+                visibility: visible;
+                width: 85px;
+            }
+            .allProductsTopWishlistCartIconBox:hover .allProductsQuickViewIconLabel {
+                opacity: 1;
+                visibility: visible;
+                width: 105px;
+            }
+
+            .allProductsSingleProduct:hover .allProductsTopWishlist {
+                transform: translateX(0);
+                visibility: visible;
+                opacity: 1;
+            }
+            .allProductsCartIconBox {
+                display: none;
+            }
+
+            .allProductsQuickViewIconBox {
+                display: flex;
+            }
+            .allProductsRating {
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 35px;
+            }
+
+            .allProductsSingleProductName {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 32px;
+                color: #242424;
+            }
+            .allRegularPriceAndDeletePrice {
+                position: relative;
+            }
+            .allProductsSingleProductRegularPrice {
+                font-size: 22px;
+                line-height: 32px;
+                font-weight: 600;
+                text-align: center;
+            }
+            .allProductsSingleProductDeletePrice {
+                display: block;
+                position: relative;
+                font-size: 14px;
+                font-weight: 400;
+                color: #989898;
+            }
+            .allProductsSingleProductDeletePrice::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                transform: translateY(-50%);
+                height: 1px;
+                width: 100%;
+                background-color: #989898;
+            }
+
+            .allProductsSingleProductPrice {
+                transform: translateY(0px);
+                transition: 0.3s all;
+            }
+
+            .allProductsSingleProduct:hover .allProductsSingleProductPrice {
+                transform: translateY(0, -10px);
+                visibility: hidden;
+                opacity: 0;
+            }
+            .allProductsCartBtn {
+                position: absolute;
+                bottom: -35px;
+                height: 42px;
+                width: 150px;
+                border: none;
+                opacity: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 18px;
+                text-align: center;
+                visibility: hidden;
+                transition: 0.3s all;
+                cursor: pointer;
+                border-radius: 50px;
+                background-color: #80BB01;
+            }
+
+            .allProductsCartBtn:focus {
+                outline: none;
+            }
+
+            .allProductsSingleProduct:hover .allProductsCartBtn {
+                transform: translateY(-38px);
+                opacity: 1;
+                visibility: visible;
+            }
+            .allProductsViewAllBtn:hover {
+                background-color: #242424;
+                color:#fff;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="homeBreadcrumb">
+        <div class="container">
+            <div class="homeBreadcrumbWrapper">
+                <p class="homeBreadcrumbText">Fruits</p>
+            <div class="breadcrumbNav">
+                <a class="breadcrumbNavItem" href="#">Home</a>
+                <span class="breadcrumbNavItem1">|</span>
+                <svg class="breadcrumbNavItem2" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                </svg>
+                <a class="breadcrumbNavItem" href="#">Fruits</a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="categoriesHeader">
+            <div class="categoriesHeaderWrapper">
+                <img class="categoriesHeaderImage" src="./images/qqq.png" alt="">
+                <span class="categoriesTitle">Categories</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="categoriesBody">
+                <div class="categoriesItemList">
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 1.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Fruits</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 2.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Vegetables</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 3.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Dairy</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 4.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Bakery</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 5.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Honey</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 6.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Frozen</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 7.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Seeds & Nuts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="allProduct">
+        <div class="container">
+            <div class="allProductHeader">
+                <div class="allProductHeaderWrapper">
+                    <img class="allProductHeaderImage" src="./images/qqq.png" alt="">
+                    <span class="allProductTitle">All Product</span>
+                </div>
+            </div>
+            <div class="allProductsCartWrapper">
+                <div class="allProductsSingleProduct">
+                    <div class="allProductsSingleProductTop">
+                        <span class="allNewLabel">New</span>
+                        <div class="allProductsTopWishlist">
+                            <div class="allProductsTopWishlistCartIconBox allProductsWishlistIconBox">
+                                <span class="allProductsCartLabel allProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="allProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="allProductsTopWishlistCartIconBox allProductsQuickViewIconBox">
+                                <span class="allProductsCartLabel allProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="allProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="allProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="allProductSingleProductBottom">
+                        <ul class="allProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <p class="allProductsSingleProductName">Organic Cavendish Banana</p>
+
+                        <div class="allRegularPriceAndDeletePrice">
+                            <p class="allProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="allProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="allProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="allProductSectionButton">
+                <button class="allProductsViewAllBtn">View All Products</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap"
+        rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans";
+        }
+
+        body {
+            background-color: #F4F4F4;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1640px;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+        .categoriesHeader {
+            display: none;
+        }
+        .categoriesBody {
+            overflow-x: scroll;
+            padding-top: 50px;
+        }
+        .categoriesBody::-webkit-scrollbar {
+            display: none;
+        }
+        .categoriesItemList {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 175%;
+        }
+
+        .categoriesItems {
+            text-align: center;
+            width: calc(25% - 10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .categoriesItemsBox {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(128, 187, 1 , 25%);
+            border-radius: 50%;
+            height: 70px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .categoriesItemsName {
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 14px;
+            margin-top: 3px;
+        }
+        .categoriesImage {
+            width: 50px;
+        }
+        @media screen and (min-width: 425px) {
+            .categoriesItemsBox {
+                background-color: #FFFFFF;
+                border: 1px solid rgba(128, 187, 1 , 25%);
+                border-radius: 50%;
+                height: 84px;
+                width: 84px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .categoriesItemsName {
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 14px;
+                margin-top: 3px;
+            }
+            .categoriesImage {
+                width: 65px;
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .categoriesItemList {
+                width: 100%;
+            }
+            #categories {
+                padding-top: 60px;
+            }
+            .categoriesHeader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 76px;
+            }
+            .categoriesHeaderWrapper {
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: 325px;
+            }
+            .categoriesHeaderImage {
+                height: 76.13px;
+                width: 107.21px;
+                position: absolute;
+                left: 75px;
+            }
+            .categoriesTitle {
+                position: absolute;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 32px;
+                color: #242424;
+                right: 75px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="categories">
+        <div class="categoriesHeader">
+            <div class="categoriesHeaderWrapper">
+                <img class="categoriesHeaderImage" src="./images/qqq.png" alt="">
+                <span class="categoriesTitle">Categories</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="categoriesBody">
+                <div class="categoriesItemList">
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 1.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Fruits</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 2.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Vegetables</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 3.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Dairy</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 4.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Bakery</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 5.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Honey</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 6.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Frozen</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 7.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Seeds & Nuts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

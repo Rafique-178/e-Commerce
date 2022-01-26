@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>slide</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet">
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Montserrat", sans-serif;
+            }
+
+            body {
+                background-color: #f1f5ff;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .container {
+                max-width: 1640px;
+                width: 100%;
+                padding: 0 20px;
+                margin: 0 auto;
+            }
+            @keyframes slidy {
+                0% { left: 0%; }
+                25% { left: 0%; }
+                35% { left: -100%; }
+                55% { left: -100%; }
+                65% { left: -200%; }
+                85% { left: -200%; }
+                100% { left: -300%; }
+            }
+
+            #slider { overflow: hidden;
+                position: relative;
+            }
+            #slider figure img {
+                width: 20%;
+                float: left;
+                height: 800px;
+            }
+            #slider figure {
+                position: relative;
+                width: 500%;
+                margin: 0;
+                left: 0;
+                text-align: left;
+                font-size: 0;
+                animation: 9s slidy infinite;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="slider">
+            <figure>
+                <img src="./images/Banner.png" alt="Banner">
+                <img src="./images/5.jpg" alt="Banner">
+                <img src="./images/4.jpg" alt="Banner">
+                <img src="./images/Banner.png" alt="Banner">
+            </figure>
+        </div>
+
+    </body>
+
+</html>

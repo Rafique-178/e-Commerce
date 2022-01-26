@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home page</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans";
+        }
+
+        body {
+            background-color: #F4F4F4;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 32px;
+            color: #242424;
+            transition: all .3s;
+        }
+        .navBottom a:hover {
+            color: #80BB01;
+        }
+        .container {
+            max-width: 1640px;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        .mobileHeaderCol {
+            width: 33.33%;
+            z-index: 1;
+        }
+
+        .mobileHeaderLogoSize {
+            max-width: 96px;
+            width: 100%;
+        }
+
+        .textCenter {
+            text-align: center;
+        }
+
+        .mobileHeaderWrapper {
+            position: relative;
+        }
+
+        .mobileHeaderArea {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            background: #fff;
+        }
+
+        .mobileVersionHeader {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .hamburgerIcon {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            display: block;
+        }
+        .hamburgerIcon .line {
+            display: block;
+            background: #000;
+            width: 16px;
+            height: 2px;
+            position: absolute;
+            left: 0;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .hamburgerIcon .line1 {
+            top: 0;
+        }
+        .hamburgerIcon .line2 {
+            top: 50%;
+        }
+        .hamburgerIcon .line3 {
+            top: 100%;
+        }
+        .hamburgerIcon:hover .line1 {
+            transform: translateY(8px) translateX(0) rotate(45deg);
+        }
+        .hamburgerIcon:hover .line2 {
+            opacity: 0;
+        }
+        .hamburgerIcon:hover .line3 {
+            transform: translateY(-8px) translateX(0) rotate(-45deg);
+        }
+        .mobileHeaderLogoSize {
+            max-width: 96px;
+            width: 100%;
+        }
+
+        .visibleSearch {
+            position: absolute;
+            width: calc(100% - 40px);
+            left: 20px;
+            top: 16px;
+        }
+        .searchItem {
+            position: relative;
+            height: 30px;
+        }
+
+        .SearchBar {
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #95AFC0;
+            width: 100%;
+            visibility: hidden;
+            outline: none;
+            padding: 0 8px;
+        }
+        .searchIcon {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 17px;
+            height: 17px;
+            transition: all .3s;
+            right: 0;
+        }
+        .visibleSearch .searchIcon {
+            right: 7px;
+        }
+        .searchItem input[type="text"]::placeholder {
+            font-size: 11px;
+            font-weight: 500;
+            color: #778994;
+        }
+        .allProductsSearchList {
+            position: absolute;
+            right: 0;
+            top: 28px;
+            list-style: none;
+            background-color: #fff;
+            padding: 10px;
+            width: 100%;
+            border-radius: 3px;
+            border: 1px solid #95afc0;
+            transition: 0.3s all;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+        }
+
+        .allProductsSearchItem {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            cursor: pointer;
+        }
+
+        .allProductsSearchItem:not(:last-child) {
+            border-bottom: 1px solid #95afc05e;
+        }
+
+        .allProductsSearchImage {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .allProducstSearchName {
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .hamburgerWrapper {
+            position: fixed;
+        }
+
+
+        .hamburgerMenu {
+            width: 230px;
+            padding: 0 20px;
+            background: #fff;
+            height: 100vh;
+            min-height: 768px;
+            position: absolute;
+            top: 0;
+            z-index: 9;
+            left: -230px;
+            position: fixed;
+            padding-top: 60px;
+            transition: all .3s;
+        }
+        .overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: none;
+            top: 0;
+            left: 230px;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index:2;
+        }
+        .hamburgerNavItemText {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2C2C2C;
+            cursor: pointer;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hamburgerNavRightArrow {
+            filter: brightness(0);
+        }
+        .mobileBottomNav {
+            background-color: #80BB01;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 60px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 0 15px rgb(108 99 255 / 10%);
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .mobileBottomNavInner {
+            position: relative;
+        }
+
+        .bottomNav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navItem {
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navItemInner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bottomNavButton {
+            background: transparent;
+            border: none;
+        }
+        .bottomNavIconSize {
+            width: 20px;
+            height: 20px;
+        }
+
+        .navItem .bottomNavIconSize {
+            filter: brightness(0) invert(1);
+        }
+
+        .bottomNavItemArea2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -25px;
+        }
+
+        .bottomNav2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navItem2 {
+            background-color: #fff;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: relative;
+            visibility: hidden;
+            border: 3px solid #fff;
+        }
+
+        .showNavItem2 {
+            visibility: visible;
+        }
+
+        .showNavItem2 .bottomNavIconSize {
+            filter: invert(1);
+        }
+
+        .navItem2::after {
+            content: "";
+            position: absolute;
+            width: 71px;
+            height: 71px;
+            border-radius: 50%;
+            z-index: -999999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .showHideText .bottomNavIconSize {
+            visibility: hidden;
+        }
+
+        .navItemsHome .bottomNavIconSize {
+            visibility: hidden;
+        }
+
+        .navItemsHome .bottomNavItemText {
+            font-size: 10px;
+        }
+
+        .bottomNavIconSize2 {
+            width: 20px;
+            height: 20px;
+        }
+        .searchContentItem {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 8px;
+        }
+
+        .searchContentItem:not(:last-child) {
+            padding-bottom: 8px;
+            border-bottom: 1px solid #95afc05e;
+        }
+
+        .searchProductImg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .searchProductName {
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .desktopHeader {
+            display: none;
+        }
+        @media (min-width : 426px) {
+            .visibleSearch {
+                width: calc(100% - 40px);
+            }
+        }
+        @media(min-width:768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .mobileHeaderWrapper {
+                position: relative;
+                display: none;
+            }
+
+            .mobileBottomNav {
+                display: none !important;
+            }
+
+            /* desktop Header*/
+
+            .desktopHeader {
+                display: block;
+            }
+            .navTop {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px 0;
+            }
+            .logo {
+                cursor: pointer;
+                width: 25%;
+                float: left;
+            }
+            .headerSearch {
+                position: relative;
+                width: 50%;
+            }
+
+            .searchInput {
+                height: 45px;
+                border-radius: 50px;
+                border: 1px solid #80BB01;
+                width: 100%;
+                outline: none;
+                padding: 0 20px;
+                background: transparent;
+            }
+
+            .searchIcon {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 17px;
+                height: 17px;
+                transition: all .3s;
+                right: 20px;
+                cursor: pointer;
+            }
+
+            .menuIconInner {
+                display: flex;
+                align-items: center;
+            }
+
+            .menuIconList {
+                position: relative;
+            }
+
+            .menuIconList:not(:last-child) {
+                margin-right: 28.5px;
+            }
+
+            .menuIcon {
+                margin-right: 8px;
+            }
+
+            .menuIconSize {
+                width: 20px;
+                height: 17.57px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #2C2C2C;
+            }
+
+            .wishlistCount {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                background-image: linear-gradient(to right, #80BB01, #80BB01);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                top: -14px;
+                right: -7px;
+            }
+
+            .wishlistCountText {
+                color: #fff;
+                font-size: 11px;
+                font-weight: 500;
+                line-height: 14px;
+            }
+
+            .menuItem {
+                display: flex;
+            }
+
+            .menuItemList:not(:last-child) {
+                padding-right: 20px
+            }
+
+            .navTopIcon {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            .LoginAndRegister {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 24px;
+                color: #242424;
+                cursor: pointer;
+            }
+            .navBottom {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        @media(min-width:1025px) {
+            .categoriesMenuArea {
+                width: 280px;
+                height: 50px;
+            }
+
+            .categoriesMenu {
+                width: 280px;
+                height: 50px;
+                padding: 0 20px;
+            }
+
+            .headerMenu {
+                margin-left: 40px;
+            }
+
+            .mainMenuItem:not(:last-child) {
+                margin-right: 40px;
+            }
+
+            .rightMenuIconList:not(:first-child) {
+                margin-left: 40px;
+            }
+
+            .menuRightIconSize {
+                width: 18px;
+                height: 20px;
+            }
+
+            .mainMenuItemLink {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main id="header">
+        <div class="mobileBottomNav ">
+            <div class="container">
+                <div class="mobileBottomNavInner">
+                    <div class="bottomNavItemArea">
+                        <ul class="bottomNav">
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+                                        <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24" height="23.986" viewBox="0 0 24 23.986">
+                                            <path id="fi-rr-home" d="M23.121,9.069,15.536,1.483a5.008,5.008,0,0,0-7.072,0L.879,9.069A2.978,2.978,0,0,0,0,11.19v9.817a3,3,0,0,0,3,3H21a3,3,0,0,0,3-3V11.19A2.978,2.978,0,0,0,23.121,9.069ZM15,22.007H9V18.073a3,3,0,0,1,6,0Zm7-1a1,1,0,0,1-1,1H17V18.073a5,5,0,0,0-10,0v3.934H3a1,1,0,0,1-1-1V11.19a1.008,1.008,0,0,1,.293-.707L9.878,2.9a3.008,3.008,0,0,1,4.244,0l7.585,7.586a1.008,1.008,0,0,1,.293.7Z" transform="translate(0 -0.021)" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+                                          <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24.655" height="21.663" viewBox="0 0 24.655 21.663">
+                                            <path id="fi-rr-heart" d="M17.97,1.917a6.572,6.572,0,0,0-5.648,3.389A6.572,6.572,0,0,0,6.675,1.917,6.983,6.983,0,0,0,0,9.156c0,4.669,4.915,9.769,9.037,13.226a5.108,5.108,0,0,0,6.572,0c4.122-3.457,9.037-8.557,9.037-13.226A6.983,6.983,0,0,0,17.97,1.917ZM14.289,20.812a3.053,3.053,0,0,1-3.933,0c-5.276-4.427-8.3-8.674-8.3-11.655A4.929,4.929,0,0,1,6.675,3.971,4.929,4.929,0,0,1,11.3,9.156a1.027,1.027,0,1,0,2.054,0A4.929,4.929,0,0,1,17.97,3.971a4.929,4.929,0,0,1,4.621,5.186c0,2.981-3.026,7.228-8.3,11.651Z" transform="translate(0.005 -1.917)" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem navItemsHome" id="navItemsHome">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+
+                                        <svg id="bottomNavCartIconSize" class="bottomNavIconSize" id="fi-rr-shopping-cart" xmlns="http://www.w3.org/2000/svg" width="26.888" height="27.782" viewBox="0 0 26.888 27.782">
+                                            <path id="Path_26" data-name="Path 26" d="M26.086,4.683a3.438,3.438,0,0,0-2.645-1.237H4.872l-.048-.4A3.446,3.446,0,0,0,1.4,0H1.149a1.149,1.149,0,0,0,0,2.3H1.4a1.148,1.148,0,0,1,1.14,1.014l1.58,13.438a5.743,5.743,0,0,0,5.7,5.073H21.822a1.149,1.149,0,1,0,0-2.3H9.828a3.446,3.446,0,0,1-3.239-2.3H20.28A5.743,5.743,0,0,0,25.931,12.5l.9-5a3.439,3.439,0,0,0-.747-2.821ZM24.578,7.1l-.9,5a3.446,3.446,0,0,1-3.4,2.835H6.224L5.143,5.743h18.3A1.149,1.149,0,0,1,24.578,7.1Z" fill="#fff"/>
+                                            <circle id="Ellipse_7" data-name="Ellipse 7" cx="2.5" cy="2.5" r="2.5" transform="translate(5.739 22.782)" fill="#fff"/>
+                                            <circle id="Ellipse_8" data-name="Ellipse 8" cx="2.5" cy="2.5" r="2.5" transform="translate(16.739 22.782)" fill="#fff"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+
+                                        <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="21.753" height="24.003" viewBox="0 0 21.753 24.003">
+                                            <path id="fi-rr-bell" d="M22.555,13.662l-1.9-6.836A9.321,9.321,0,0,0,2.576,7.3L1.105,13.915A5,5,0,0,0,5.986,20H7.1a5,5,0,0,0,9.8,0h.838a5,5,0,0,0,4.818-6.338ZM12,22a3,3,0,0,1-2.816-2h5.632A3,3,0,0,1,12,22Zm8.126-5.185A2.977,2.977,0,0,1,17.737,18H5.986a3,3,0,0,1-2.928-3.651l1.47-6.616a7.321,7.321,0,0,1,14.2-.372l1.9,6.836a2.977,2.977,0,0,1-.5,2.618Z" transform="translate(-0.986 -0.002)" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+
+                                        <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="19.516" height="21.662" viewBox="0 0 19.516 21.662">
+                                            <path id="User" d="M2.3,21.662H0a9.816,9.816,0,0,1,3.475-5.439,10.163,10.163,0,0,1,12.566,0,9.815,9.815,0,0,1,3.474,5.438h-2.3a7.838,7.838,0,0,0-14.923,0Zm7.462-8.608A6.616,6.616,0,0,1,3.086,6.527,6.608,6.608,0,0,1,9.758,0,6.608,6.608,0,0,1,16.43,6.527,6.608,6.608,0,0,1,9.758,13.054Zm0-10.878A4.406,4.406,0,0,0,5.309,6.527a4.45,4.45,0,0,0,8.9,0A4.406,4.406,0,0,0,9.758,2.175Z" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bottomNavItemArea2">
+                        <ul class="bottomNav2">
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24" height="23.986" viewBox="0 0 24 23.986">
+                                    <path id="fi-rr-home" d="M23.121,9.069,15.536,1.483a5.008,5.008,0,0,0-7.072,0L.879,9.069A2.978,2.978,0,0,0,0,11.19v9.817a3,3,0,0,0,3,3H21a3,3,0,0,0,3-3V11.19A2.978,2.978,0,0,0,23.121,9.069ZM15,22.007H9V18.073a3,3,0,0,1,6,0Zm7-1a1,1,0,0,1-1,1H17V18.073a5,5,0,0,0-10,0v3.934H3a1,1,0,0,1-1-1V11.19a1.008,1.008,0,0,1,.293-.707L9.878,2.9a3.008,3.008,0,0,1,4.244,0l7.585,7.586a1.008,1.008,0,0,1,.293.7Z" transform="translate(0 -0.021)" fill="#242424"/>
+                                </svg>
+                            </li>
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24.655" height="21.663" viewBox="0 0 24.655 21.663">
+                                    <path id="fi-rr-heart" d="M17.97,1.917a6.572,6.572,0,0,0-5.648,3.389A6.572,6.572,0,0,0,6.675,1.917,6.983,6.983,0,0,0,0,9.156c0,4.669,4.915,9.769,9.037,13.226a5.108,5.108,0,0,0,6.572,0c4.122-3.457,9.037-8.557,9.037-13.226A6.983,6.983,0,0,0,17.97,1.917ZM14.289,20.812a3.053,3.053,0,0,1-3.933,0c-5.276-4.427-8.3-8.674-8.3-11.655A4.929,4.929,0,0,1,6.675,3.971,4.929,4.929,0,0,1,11.3,9.156a1.027,1.027,0,1,0,2.054,0A4.929,4.929,0,0,1,17.97,3.971a4.929,4.929,0,0,1,4.621,5.186c0,2.981-3.026,7.228-8.3,11.651Z" transform="translate(0.005 -1.917)" fill="#242424"/>
+                                  </svg>
+                            </li>
+                            <li class="navItem2  showNavItem2 ">
+                                    <svg id="bottomNavCartIconSize" class="bottomNavIconSize" id="fi-rr-shopping-cart" xmlns="http://www.w3.org/2000/svg" width="26.888" height="27.782" viewBox="0 0 26.888 27.782">
+                                        <path id="Path_26" data-name="Path 26" d="M26.086,4.683a3.438,3.438,0,0,0-2.645-1.237H4.872l-.048-.4A3.446,3.446,0,0,0,1.4,0H1.149a1.149,1.149,0,0,0,0,2.3H1.4a1.148,1.148,0,0,1,1.14,1.014l1.58,13.438a5.743,5.743,0,0,0,5.7,5.073H21.822a1.149,1.149,0,1,0,0-2.3H9.828a3.446,3.446,0,0,1-3.239-2.3H20.28A5.743,5.743,0,0,0,25.931,12.5l.9-5a3.439,3.439,0,0,0-.747-2.821ZM24.578,7.1l-.9,5a3.446,3.446,0,0,1-3.4,2.835H6.224L5.143,5.743h18.3A1.149,1.149,0,0,1,24.578,7.1Z" fill="#fff"/>
+                                        <circle id="Ellipse_7" data-name="Ellipse 7" cx="2.5" cy="2.5" r="2.5" transform="translate(5.739 22.782)" fill="#fff"/>
+                                        <circle id="Ellipse_8" data-name="Ellipse 8" cx="2.5" cy="2.5" r="2.5" transform="translate(16.739 22.782)" fill="#fff"/>
+                                    </svg>
+                            </li>
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="21.753" height="24.003" viewBox="0 0 21.753 24.003">
+                                    <path id="fi-rr-bell" d="M22.555,13.662l-1.9-6.836A9.321,9.321,0,0,0,2.576,7.3L1.105,13.915A5,5,0,0,0,5.986,20H7.1a5,5,0,0,0,9.8,0h.838a5,5,0,0,0,4.818-6.338ZM12,22a3,3,0,0,1-2.816-2h5.632A3,3,0,0,1,12,22Zm8.126-5.185A2.977,2.977,0,0,1,17.737,18H5.986a3,3,0,0,1-2.928-3.651l1.47-6.616a7.321,7.321,0,0,1,14.2-.372l1.9,6.836a2.977,2.977,0,0,1-.5,2.618Z" transform="translate(-0.986 -0.002)" fill="#242424"/>
+                                </svg>
+                            </li>
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="19.516" height="21.662" viewBox="0 0 19.516 21.662">
+                                    <path id="User" d="M2.3,21.662H0a9.816,9.816,0,0,1,3.475-5.439,10.163,10.163,0,0,1,12.566,0,9.815,9.815,0,0,1,3.474,5.438h-2.3a7.838,7.838,0,0,0-14.923,0Zm7.462-8.608A6.616,6.616,0,0,1,3.086,6.527,6.608,6.608,0,0,1,9.758,0,6.608,6.608,0,0,1,16.43,6.527,6.608,6.608,0,0,1,9.758,13.054Zm0-10.878A4.406,4.406,0,0,0,5.309,6.527a4.45,4.45,0,0,0,8.9,0A4.406,4.406,0,0,0,9.758,2.175Z" fill="#242424"/>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="mobileHeaderWrapper">
+            <div class="mobileHeaderArea">
+                <div class="container">
+                    <div class="mobileVersionHeader">
+                        <div class="mobileHeaderCol">
+                            <a class="hamburgerIcon" href="#" title="Menu">
+                                <span class="line line1"></span>
+                                <span class="line line2"></span>
+                                <span class="line line3"></span>
+                            </a>
+                        </div>
+                        <div class="mobileHeaderCol textCenter">
+                            <div id="logo">
+                                <img id="imglogo" class="mobileHeaderLogoSize" src="./images/Logo.png" alt="">
+                            </div>
+                        </div>
+                        <div class="mobileHeaderCol">
+                            <div class="visibleSearch">
+                                <input id="SearchBar" type="text" placeholder="Search Product"
+                                    class="SearchBar" autocomplete="off">
+
+                                <ul class="allProductsSearchList">
+                                    <li class="allProductsSearchItem">
+                                        <img class="allProductsSearchImage" src="./images/Image1.png" alt="">
+                                        <span class="allProducstSearchName">24mm Howell Lance</span>
+                                    </li>
+                                    <li class="allProductsSearchItem">
+                                        <img class="allProductsSearchImage" src="./images/Image2.png" alt="">
+                                        <span class="allProducstSearchName">24mm Howell Lance</span>
+                                    </li>
+                                    <li class="allProductsSearchItem">
+                                        <img class="allProductsSearchImage" src="./images/Image3.png" alt="">
+                                        <span class="allProducstSearchName">24mm Howell Lance</span>
+                                    </li>
+                                </ul>
+
+                                <svg id="searchIcon" class="searchIcon" xmlns="http://www.w3.org/2000/svg"
+                                    width="17" height="17" viewBox="0 0 17 17">
+                                    <path id="fi-rr-search"
+                                        d="M16.761,15.76l-4.222-4.222a7.085,7.085,0,1,0-1,1l4.222,4.222a.707.707,0,1,0,1-1Zm-9.7-3.037a5.659,5.659,0,1,1,5.659-5.659,5.659,5.659,0,0,1-5.659,5.659Z"
+                                        transform="translate(0.032 0.032)" fill="#2c2c2c" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburgerWrapper">
+                <div class="container">
+                    <div class="hamburgerMenu">
+                        <ul class="hamburgerNav">
+                            <li class="hamburgerNavItemText">
+                                <a href="">Fruits</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Vegetables</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Dairy</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Bakery</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Honey</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Frozen</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Seeds & Nuts</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay"></div>
+        </header>
+
+        <header>
+            <div class="desktopHeader">
+                <div class="container">
+                    <div class="navTop">
+                        <div class="logo"><img src="./images/Logo.png" alt="econature"></div>
+                        <div class="headerSearch">
+                            <input class="searchInput" type="text" placeholder="Search for Product..">
+                            <svg class="searchIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="19.74"
+                                viewBox="0 0 20 19.74">
+                                <path id="Path_25" data-name="Path 25"
+                                    d="M16-2.92a.472.472,0,0,1-.11-.28.526.526,0,0,1,.07-.3,8.5,8.5,0,0,0,1.38-4.7,8.533,8.533,0,0,0-1.18-4.38,8.746,8.746,0,0,0-3.12-3.12,8.427,8.427,0,0,0-4.36-1.18A8.533,8.533,0,0,0,4.3-15.7a8.746,8.746,0,0,0-3.12,3.12A8.533,8.533,0,0,0,0-8.2,8.533,8.533,0,0,0,1.18-3.82,8.745,8.745,0,0,0,4.3-.7,8.533,8.533,0,0,0,8.68.48,8.6,8.6,0,0,0,11.34.06a8.976,8.976,0,0,0,2.34-1.18.4.4,0,0,1,.29-.09.363.363,0,0,1,.27.13L17.4,2.08q.02.02.16.14l.18.16.36.38a.388.388,0,0,0,.52,0L19.9,1.48a.352.352,0,0,0,.1-.26.352.352,0,0,0-.1-.26ZM13.92-4.16a6.311,6.311,0,0,1-.96,1.02,6.451,6.451,0,0,1-1.98,1.17,6.532,6.532,0,0,1-2.3.41,6.5,6.5,0,0,1-3.34-.9,6.477,6.477,0,0,1-2.4-2.4,6.5,6.5,0,0,1-.9-3.34,6.5,6.5,0,0,1,.9-3.34,6.477,6.477,0,0,1,2.4-2.4,6.5,6.5,0,0,1,3.34-.9,6.5,6.5,0,0,1,3.34.9,6.523,6.523,0,0,1,2.38,2.4,6.5,6.5,0,0,1,.9,3.34,6.469,6.469,0,0,1-.36,2.15A6.733,6.733,0,0,1,13.92-4.16Z"
+                                    transform="translate(0 16.88)" fill="#80bb01" />
+                            </svg>
+                        </div>
+                        <div class="menuIconList navTopIcon">
+                            <svg class="menuIconSize" xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                viewBox="0 0 15 20">
+                                <g id="Account" transform="translate(-3)">
+                                    <path id="Path_1652" data-name="Path 1652"
+                                        d="M10.994,10.024A5.012,5.012,0,1,0,6,5.012a5,5,0,0,0,4.994,5.012Zm0-8.353A3.341,3.341,0,1,1,7.665,5.012a3.335,3.335,0,0,1,3.329-3.341Z"
+                                        transform="translate(-0.494)" fill="#2c2c2c" />
+                                    <path id="Path_1653" data-name="Path 1653"
+                                        d="M10.5,14A7.517,7.517,0,0,0,3,21.518a.833.833,0,1,0,1.667,0,5.833,5.833,0,1,1,11.667,0,.833.833,0,1,0,1.667,0A7.517,7.517,0,0,0,10.5,14Z"
+                                        transform="translate(0 -2.353)" fill="#2c2c2c" />
+                                </g>
+                            </svg>
+                            <p class="LoginAndRegister"> Login / Register </p>
+                        </div>
+                    </div>
+                    <div class="navBottom">
+                        <ul class="menuItem">
+                            <li class="menuItemList"><a href="#">Fruits</a></li>
+                            <li class="menuItemList"><a href="#">Vegetables</a></li>
+                            <li class="menuItemList"><a href="#">Dairy</a></li>
+                            <li class="menuItemList"><a href="#">Bakery</a></li>
+                            <li class="menuItemList"><a href="#">Honey</a></li>
+                            <li class="menuItemList"><a href="#">Frozen</a></li>
+                            <li class="menuItemList"><a href="#">Seeds & Nuts</a></li>
+                        </ul>
+
+                        <div class="menuIcon">
+                            <ul class="menuIconInner">
+                                <li class="menuIconList">
+                                    <svg class="menuIconSize" xmlns="http://www.w3.org/2000/svg" width="20" height="17.573"
+                                        viewBox="0 0 20 17.573">
+                                        <path id="Wishlist"
+                                            d="M14.577,1.917A5.331,5.331,0,0,0,10,4.666,5.331,5.331,0,0,0,5.414,1.917,5.664,5.664,0,0,0,0,7.79c0,3.788,3.987,7.924,7.33,10.729a4.143,4.143,0,0,0,5.331,0c3.344-2.8,7.33-6.941,7.33-10.729a5.664,5.664,0,0,0-5.414-5.873ZM11.59,17.244a2.476,2.476,0,0,1-3.19,0C4.12,13.653,1.665,10.208,1.665,7.79A4,4,0,0,1,5.414,3.583,4,4,0,0,1,9.162,7.79a.833.833,0,0,0,1.666,0,4,4,0,0,1,3.748-4.207A4,4,0,0,1,18.325,7.79c0,2.418-2.455,5.863-6.735,9.451Z"
+                                            transform="translate(0.005 -1.917)" fill="#2c2c2c" />
+                                    </svg>
+                                    <div class="wishlistCount">
+                                        <p class="wishlistCountText">0</p>
+                                    </div>
+                                </li>
+                                <li class="menuIconList">
+                                    <svg class="menuIconSize navIcon" xmlns="http://www.w3.org/2000/svg" width="17.852"
+                                        height="22.1" viewBox="0 0 17.852 22.1">
+                                        <path id="Cart"
+                                            d="M16.49,4.9a.7.7,0,0,0-.7-.645H13.308A4.445,4.445,0,0,0,8.882.125c-.069,0-.138,0-.207.005A4.416,4.416,0,0,0,4.453,4.259H1.959a.707.707,0,0,0-.7.645L0,19.046v.061a3.236,3.236,0,0,0,3.216,3.019c.059,0,.118,0,.178-.005H14.351c.061,0,.12.005.18.005a3.232,3.232,0,0,0,3.218-3.008.236.236,0,0,0,0-.08ZM5.146,8.122a.709.709,0,0,0,.709-.708V5.68h6.037V7.414a.708.708,0,0,0,1.417,0V5.68h1.828l1.2,13.433a1.832,1.832,0,0,1-1.967,1.59H3.385a1.825,1.825,0,0,1-1.968-1.569L2.609,5.68H4.438V7.414A.709.709,0,0,0,5.146,8.122Zm.717-3.863A3.04,3.04,0,0,1,8.875,1.413a3,3,0,0,1,3.013,2.846Z"
+                                            transform="translate(0.05 -0.075)" fill="#2c2c2c" stroke="#2c2c2c"
+                                            stroke-width="0.1" />
+                                    </svg>
+                                    <div class="wishlistCount">
+                                        <p class="wishlistCountText">0</p>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <img class="bannerImage" src="./images/Banner.png" alt="Banner"> -->
+        </header>
+    </main>
+</body>
+
+</html>

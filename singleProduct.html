@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add to cart</title>
+
+  <link rel="stylesheet" href="../Office Work/font/icofont/icofont.min.css">
+
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "poppins";
+        }
+
+        body {
+            background-color: #F4F4F4;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1640px;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+        .homeBreadcrumb {
+            background-color: rgb(167 186 235 / 10%);
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .homeBreadcrumbText {
+            font-size: 24px;
+            line-height: 44px;
+            font-weight: 600;
+            color: #282828;
+        }
+        .homeBreadcrumbText:hover {
+            color: #80BB01;
+            cursor: pointer;
+        }
+        .breadcrumbNavItem {
+            font-family: "Poppins";
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 400;
+            color: #A4B0BE;
+        }
+        .breadcrumbNavItem1 {
+            color: #A4B0BE;
+        }
+        .breadcrumbNavItem2 {
+            display: none;
+        }
+        @media screen and (min-width: 769px) {
+            .homeBreadcrumbWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 50px;
+            }
+            .homeBreadcrumbText {
+                font-size: 32px;
+                line-height: 39px;
+                font-weight: 700;
+                color: #282828;
+            }
+            .breadcrumbNav {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .breadcrumbNavItem {
+                font-family: "Poppins";
+                font-size: 16px;
+                line-height: 19px;
+                font-weight: 500;
+                color: #A4B0BE;
+            }
+            .breadcrumbNavItem2 {
+                display: block;
+                margin: 0 17.5px;
+            }
+            .breadcrumbNavItem1 {
+                display: none;
+            }
+        }
+        .singleProductInfo {
+            padding-top: 50px;
+        }
+        .singleProductProductImagePart {
+            position: relative;
+        }
+        .singleProductProductBackground {
+            background-color: #fff;
+        }
+        .singleProductTagLabel {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 25px;
+            color: #fff;
+            padding: 0 8px;
+            border: none;
+            background-color: #80BB01;
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            left: 18px;
+            top: 18px;
+        }
+        .singleProductImage {
+            width: 100%;
+        }
+        .imagesCounter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 30px;
+        }
+        .counterPoint {
+            height: 10px;
+            width: 10px;
+            background: transparent;
+            border: 1px solid #000;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .counterPoint:not(:last-child) {
+            margin-right: 5px;
+        }
+        .singleProductCategoryName {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 21px;
+            text-transform: uppercase;
+            color: #A4B0BE;
+            padding-top: 20px;
+        }
+        .singleProductProductTitle {
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 32px;
+            color: #282828;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+        .singleProductStarIcon,
+        .singleProductProductRating {
+            display: flex;
+        }
+
+        .singleProductRatingCounter {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 18px;
+            color: #282828;
+            margin-left: 10px;
+        }
+        .singleProductProductPrice {
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 39px;
+            color: #80BB01;
+            margin-top: 30px;
+        }
+        .singleProductProductVariationColor {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .singleProductVariationTitle {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 21px;
+            color: #95AFC0;
+            margin-right: 30px;
+        }
+        .singleProductTextVariation,
+        .singleProductProductSize,
+        .singleProductProductSpecificColor {
+            display: flex;
+            align-items: center;
+        }
+        .singleProductProductSpecificColor {
+            margin-left: 18px;
+        }
+        .singleProductColorVariation {
+            height: 25px;
+            width: 25px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 3px 10px rgb(1 18 108 / 10%);
+        }
+        .firstColor {
+            background-image: linear-gradient(#B4BBCC, #F1F5FF);
+            margin-right: 15px;
+        }
+        .secondColor {
+            background-image: linear-gradient(#95AFC0, #C4DAE8);
+            margin-right: 15px;
+        }
+        .thirdColor {
+            background-image: linear-gradient(#565656, #8D8D8D);
+        }
+        .variationItem {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 24px;
+            color: #2C2C2C;
+        }
+        .variationItem:not(:last-child) {
+            margin-right: 10px;
+        }
+        .singleProductQuantity {
+            background: transparent;
+            display: flex;
+            align-items: center;
+            margin-top: 33px;
+        }
+        .singleProductQuantityContent {
+            width: 100px;
+            height: 36px;
+            border: 1px solid #95AFC0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-left: -10px;
+        }
+        .previous,
+        .next {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 24px;
+            line-height: 29px;
+            color: #778994;
+        }
+        .quantityText {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 19px;
+            color: #2C2C2C;
+        }
+        .singleProductQuantityButton {
+            display: flex;
+            align-items: center;
+            padding-top: 30px;
+            display: none;
+        }
+        .singleProductCartButton {
+            height: 36px;
+            width: 130px;
+            text-align: center;
+            background-color: #80BB01;
+            border: none;
+            outline: none;
+        }
+        .WishListButtonText,
+        .singleProductCartButtonText {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 21px;
+        }
+        .singleProductCartButtonText {
+            color: #FFFFFF;
+        }
+        .singleProductWishlistButton {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+        .WishListButtonText {
+            color: #000000;
+            padding-left: 10px;
+        }
+        .singleProductDescription {
+            padding-top: 100px;
+        }
+        .singleProductQuantityButtonForMobile {
+            display: flex;
+            align-items: center;
+            padding-top: 30px;
+        }
+        .singleProductDescriptionTitle {
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: 700;
+            color: #282828;
+            padding-bottom: 30px;
+        }
+        .singleProductDescriptionText {
+            font-size: 14px;
+            line-height: 26px;
+            font-weight: 500;
+            color: #A4B0BE;
+        }
+        #singleProductReviews {
+            padding-bottom: 50px;
+        }
+        .singleProductReviewsTitle {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 29px;
+            color: #282828;
+            margin-bottom: 20px;
+            margin-top: 90px;
+        }
+        .singleProductRatingPoint {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 58px;
+            color: #000000;
+        }
+        .singleProductStarIcon  .yellow {
+            color: #FDD835;
+        }.singleProductStarIcon .colorless {
+            color: #E4E4E4;
+        }
+        .singleProductViewerCount {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 500;
+            color: #A4B0BE;
+            margin-bottom: 35px;
+        }
+        .starIconFlexProgressbar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .singleProductProgressbar1,
+        .singleProductProgressbar2,
+        .singleProductProgressbar3,
+        .singleProductProgressbar4,
+        .singleProductProgressbar5 {
+            width: 142px;
+            height: 5px;
+            background-color:rgb(119 137 148 / 20%) ;
+            position: relative;
+            border-radius: 50px;
+            margin-left: 20px;
+        }
+        .singleProductProgressbar1::after,
+        .singleProductProgressbar2::after,
+        .singleProductProgressbar3::after,
+        .singleProductProgressbar4::after,
+        .singleProductProgressbar5::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 5px;
+            background-color: #FDD835;
+            z-index: 1;
+        }
+        .singleProductProgressbar1::after {
+            width: 80%;
+        }
+        .singleProductProgressbar2::after {
+            width: 40%;
+        }
+        .userReviews {
+            padding-top: 50px;
+        }
+        .viewersInfo {
+            display: flex;
+        }
+        .viewersDetails {
+            margin-top: 5px;
+        }
+        .viewersImage {
+            height: 55px;
+            width: 55px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .viewersName {
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: 600;
+            color: #000000;
+        }
+        .viewersComment {
+            font-size: 14px;
+            line-height: 19px;
+            font-weight: 500;
+            color: #95AFC0 ;
+            margin-top: 15px;
+        }
+        .userReviews hr {
+            width: 100%;
+            height: 1px;
+            background-color: rgb(149 175 192 / 15%);
+            opacity: 0.1;
+            margin: 20.5px 0;
+        }
+        .userReviews .viewersInfo .singleProductStarIcon .yellow,
+        .userReviews .viewersInfo .singleProductStarIcon .colorless {
+            font-size: 14px;
+        }
+        @media screen and (min-width: 769px) {
+            .container {
+                padding: 0 50px;
+            }
+            .singleProductInfo {
+                display: flex;
+            }
+            .singleProductProductImagePart {
+                width: calc(50% - 30px);
+                margin: 0 60px 0 0;
+                position: relative;
+            }
+            .singleProductProductInfoPart {
+                width: calc(50% - 30px);
+            }
+            .singleProductDescriptionTitle {
+                font-size: 24px;
+                line-height: 29px;
+                font-weight: 700;
+                color: #282828;
+            }
+            .singleProductProductSize {
+                padding-bottom: 30px;
+            }
+            .singleProductProductSize,
+            .singleProductProductVariationColor {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .singleProductProductSpecificColor {
+                margin-left: 0;
+                padding-top: 5px;
+            }
+            .singleProductQuantity {
+                display: flex;
+                flex-direction: column;
+                margin-top: 0;
+                align-items: flex-start;
+            }
+            .singleProductQuantityButtonFlexible {
+                display: flex;
+                align-items: center;
+                padding-top: 5px;
+            }
+            .singleProductQuantityButton {
+                padding-top: 0;
+                display: flex;
+            }
+            .singleProductQuantityContent {
+                margin-left: 0;
+            }
+            .singleProductQuantityButtonForMobile {
+                display: none;
+            }
+            .singleProductCartButton{
+                margin-left: 10px;
+            }
+            .singleProductRatingReviewAndUserReviews {
+                display: flex;
+                justify-content: space-between;
+            }
+            .singleProductRatingReview {
+                width: calc(30% - 30px);
+                margin: 0 65px 0 0;
+            }
+            .userReviews {
+                width: calc(70% - 30px);
+                margin-top: 0;
+            }
+            .WishListButtonText {
+                display: none;
+            }
+            .singleProductWishlistButton {
+                border: 1px solid #95AFC0;
+                height: 36px;
+                width: 35px;
+                justify-content: center;
+            }
+        }
+  </style>
+</head>
+<body>
+    <section class="homeBreadcrumb">
+        <div class="container">
+            <div class="homeBreadcrumbWrapper">
+                <p class="homeBreadcrumbText">Organic Cavendish Ban...</p>
+            <div class="breadcrumbNav">
+                <a class="breadcrumbNavItem" href="#">Home</a>
+                <span class="breadcrumbNavItem1">|</span>
+                <svg class="breadcrumbNavItem2" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                </svg>
+                <a class="breadcrumbNavItem" href="#">Fruits</a>
+                <span class="breadcrumbNavItem1">|</span>
+                <svg class="breadcrumbNavItem2" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                </svg>
+                <a class="breadcrumbNavItem" href="#">Organic Cavendish Ban...</a>
+            </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+        <div class="singleProductInfo">
+            <div class="singleProductProductImagePart">
+                <div class="singleProductProductBackground">
+                    <span class="singleProductTagLabel">New</span>
+                    <div class="singleProductProductImage">
+                    <img class="singleProductImage" src="./images/Mask Group 1.png" alt="laptop">
+                    <ul class="imagesCounter">
+                        <li class="counterPoint"></li>
+                        <li class="counterPoint"></li>
+                        <li class="counterPoint"></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="singleProductProductInfoPart">
+                <p class="singleProductCategoryName">Banana</p>
+                <p class="singleProductProductTitle">Organic Cavendish Banana</p>
+
+                <div class="singleProductProductRating">
+                    <div class="singleProductStarIcon">
+                        <i class="icofont-star yellow"></i>
+                        <i class="icofont-star yellow"></i>
+                        <i class="icofont-star yellow"></i>
+                        <i class="icofont-star colorless"></i>
+                        <i class="icofont-star colorless"></i>
+                    </div>
+                <p class="singleProductRatingCounter">16 Rating</p>
+                </div>
+                <p class="singleProductProductPrice">৳ 120000</p>
+                <div class="singleProductProductVariationColor">
+                    <p class="singleProductVariationTitle">Color:</p>
+                    <div class="singleProductProductSpecificColor">
+                    <div class="singleProductColorVariation firstColor"></div>
+                    <div class="singleProductColorVariation secondColor"></div>
+                    <div class="singleProductColorVariation thirdColor"></div>
+                    </div>
+                </div>
+                <div class="singleProductProductSize">
+                    <p class="singleProductVariationTitle">Stroage:</p>
+                    <div class="singleProductTextVariation">
+                        <span class="variationItem">Small</span>
+                        <span class="variationItem">Medium</span>
+                        <span class="variationItem">Large</span>
+                    </div>
+                </div>
+
+                <div class="singleProductQuantity">
+                    <p class="singleProductVariationTitle">Quantity :</p>
+                    <div class="singleProductQuantityButtonFlexible">
+                        <div class="singleProductQuantityContent">
+                            <button class="previous">-</button>
+                            <span class="quantityText">1</span>
+                            <button class="next">+</button>
+                        </div>
+                        <div class="singleProductQuantityButton">
+                            <button class="singleProductCartButton"><a class="singleProductCartButtonText" href="#">Add to cart</a></button>
+                            <div class="singleProductWishlistButton">
+                                <svg class="wishlistIcon" xmlns="http://www.w3.org/2000/svg" width="24.655" height="21.663" viewBox="0 0 24.655 21.663">
+                                    <path id="fi-rr-heart" d="M17.97,1.917a6.572,6.572,0,0,0-5.648,3.389A6.572,6.572,0,0,0,6.675,1.917,6.983,6.983,0,0,0,0,9.156c0,4.669,4.915,9.769,9.037,13.226a5.108,5.108,0,0,0,6.572,0c4.122-3.457,9.037-8.557,9.037-13.226A6.983,6.983,0,0,0,17.97,1.917ZM14.289,20.812a3.053,3.053,0,0,1-3.933,0c-5.276-4.427-8.3-8.674-8.3-11.655A4.929,4.929,0,0,1,6.675,3.971,4.929,4.929,0,0,1,11.3,9.156a1.027,1.027,0,1,0,2.054,0A4.929,4.929,0,0,1,17.97,3.971a4.929,4.929,0,0,1,4.621,5.186c0,2.981-3.026,7.228-8.3,11.651Z" transform="translate(0.005 -1.917)" fill="#242424"/>
+                                </svg>
+                                <p class="WishListButtonText">Add to wishlist</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="singleProductQuantityButtonForMobile">
+                    <button class="singleProductCartButton"><a class="singleProductCartButtonText" href="#">Add to cart</a></button>
+                    <div class="singleProductWishlistButton">
+                        <svg class="wishlistIcon" xmlns="http://www.w3.org/2000/svg" width="24.655" height="21.663" viewBox="0 0 24.655 21.663">
+                            <path id="fi-rr-heart" d="M17.97,1.917a6.572,6.572,0,0,0-5.648,3.389A6.572,6.572,0,0,0,6.675,1.917,6.983,6.983,0,0,0,0,9.156c0,4.669,4.915,9.769,9.037,13.226a5.108,5.108,0,0,0,6.572,0c4.122-3.457,9.037-8.557,9.037-13.226A6.983,6.983,0,0,0,17.97,1.917ZM14.289,20.812a3.053,3.053,0,0,1-3.933,0c-5.276-4.427-8.3-8.674-8.3-11.655A4.929,4.929,0,0,1,6.675,3.971,4.929,4.929,0,0,1,11.3,9.156a1.027,1.027,0,1,0,2.054,0A4.929,4.929,0,0,1,17.97,3.971a4.929,4.929,0,0,1,4.621,5.186c0,2.981-3.026,7.228-8.3,11.651Z" transform="translate(0.005 -1.917)" fill="#242424"/>
+                        </svg>
+                        <p class="WishListButtonText">Add to wishlist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="singleProductDescription">
+      <div class="container">
+        <p class="singleProductDescriptionTitle">Description</p>
+        <p class="singleProductDescriptionText">Fusce at nisi eget dolor rhoncus facilisis. Mauris ante nisl, consectetur et luctus et, porta ut dolor. Curabitur ultricies ultrices nulla. Morbi blandit nec est vitae dictum. Etiam vel consectetur diam. Maecenas vitae egestas dolor. Fusce tempor magna at tortor aliquet finibus. Sed eu nunc sit amet elit euismod faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis gravida eget neque vel vulputate. <br> <br>
+        Fusce at nisi eget dolor rhoncus facilisis. Mauris ante nisl, consectetur et luctus et, porta ut dolor. Curabitur ultricies ultrices nulla. Morbi blandit nec est vitae dictum. Etiam vel consectetur diam. Maecenas vitae egestas dolor. Fusce tempor magna at tortor aliquet finibus. Sed eu nunc sit amet elit euismod faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis gravida eget neque vel vulputate.</p>
+      </div>
+    </section>
+    <section id="singleProductReviews">
+        <div class="container">
+            <p class="singleProductReviewsTitle">Reviews</p>
+            <div class="singleProductRatingReviewAndUserReviews">
+                <div class="singleProductRatingReview">
+                    <p class="singleProductRatingPoint">4.0</p>
+                    <div class="singleProductStarIcon">
+                        <i class="icofont-star yellow"></i>
+                        <i class="icofont-star yellow"></i>
+                        <i class="icofont-star yellow"></i>
+                        <i class="icofont-star yellow"></i>
+                        <i class="icofont-star colorless"></i>
+                    </div>
+                    <p class="singleProductViewerCount">16 Reviews</p>
+                    <div class="singleProductStarIconAndProgressbar">
+                        <div class="starIconFlexProgressbar">
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                            </div>
+                            <div class="singleProductProgressbar1"></div>
+                        </div>
+                        <div class="starIconFlexProgressbar">
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <div class="singleProductProgressbar2"></div>
+                        </div>
+                        <div class="starIconFlexProgressbar">
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <div class="singleProductProgressbar3"></div>
+                        </div>
+                        <div class="starIconFlexProgressbar">
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                                <i class="icofont-star colorless"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <div class="singleProductProgressbar4"></div>
+                        </div>
+                        <div class="starIconFlexProgressbar">
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                                <i class="icofont-star colorless"></i>
+                                <i class="icofont-star colorless"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <div class="singleProductProgressbar5"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="userReviews">
+                    <div class="viewersInfo">
+                        <div class="viewersImage"><img src="./images/Ellipse 45.png" alt="User"></div>
+                        <div class="viewersDetails">
+                            <span class="viewersName">Will Mendez</span>
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <p class="viewersComment">Vivamus eget aliquam dui. Integer eu arcu vel arcu suscipit ultrices quis non mauris. Aenean scelerisque, sem eu dictum</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="viewersInfo">
+                        <div class="viewersImage"><img src="./images/Ellipse 45.png" alt="User"></div>
+                        <div class="viewersDetails">
+                            <span class="viewersName">Will Mendez</span>
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <p class="viewersComment">Vivamus eget aliquam dui. Integer eu arcu vel arcu suscipit ultrices quis non mauris. Aenean scelerisque, sem eu dictum</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="viewersInfo">
+                        <div class="viewersImage"><img src="./images/Ellipse 45.png" alt="User"></div>
+                        <div class="viewersDetails">
+                            <span class="viewersName">Will Mendez</span>
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <p class="viewersComment">Vivamus eget aliquam dui. Integer eu arcu vel arcu suscipit ultrices quis non mauris. Aenean scelerisque, sem eu dictum</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="viewersInfo">
+                        <div class="viewersImage"><img src="./images/Ellipse 45.png" alt="User"></div>
+                        <div class="viewersDetails">
+                            <span class="viewersName">Will Mendez</span>
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <p class="viewersComment">Vivamus eget aliquam dui. Integer eu arcu vel arcu suscipit ultrices quis non mauris. Aenean scelerisque, sem eu dictum</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="viewersInfo">
+                        <div class="viewersImage"><img src="./images/Ellipse 45.png" alt="User"></div>
+                        <div class="viewersDetails">
+                            <span class="viewersName">Will Mendez</span>
+                            <div class="singleProductStarIcon">
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star yellow"></i>
+                                <i class="icofont-star colorless"></i>
+                            </div>
+                            <p class="viewersComment">Vivamus eget aliquam dui. Integer eu arcu vel arcu suscipit ultrices quis non mauris. Aenean scelerisque, sem eu dictum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

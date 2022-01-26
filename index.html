@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eShop</title>
+    <link rel="stylesheet" href="./font/icofont/icofont.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto";
+        }
+
+        body {
+            background-color: #F4F4F4;
+        }
+        .bannerImage {
+            width: 100%;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 32px;
+            color: #242424;
+            transition: all .3s;
+        }
+        .navBottom a:hover {
+            color: #80BB01;
+        }
+        .container {
+            max-width: 1640px;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        .mobileHeaderCol {
+            width: 33.33%;
+            z-index: 1;
+        }
+
+        .mobileHeaderLogoSize {
+            max-width: 96px;
+            width: 100%;
+        }
+
+        .textCenter {
+            text-align: center;
+        }
+
+        .mobileHeaderWrapper {
+            position: relative;
+        }
+
+        .mobileHeaderArea {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            background: #fff;
+        }
+
+        .mobileVersionHeader {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .hamburgerIcon {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            display: block;
+        }
+        .hamburgerIcon .line {
+            display: block;
+            background: #000;
+            width: 16px;
+            height: 2px;
+            position: absolute;
+            left: 0;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .hamburgerIcon .line1 {
+            top: 0;
+        }
+        .hamburgerIcon .line2 {
+            top: 50%;
+        }
+        .hamburgerIcon .line3 {
+            top: 100%;
+        }
+        .hamburgerIcon:hover .line1 {
+            transform: translateY(8px) translateX(0) rotate(45deg);
+        }
+        .hamburgerIcon:hover .line2 {
+            opacity: 0;
+        }
+        .hamburgerIcon:hover .line3 {
+            transform: translateY(-8px) translateX(0) rotate(-45deg);
+        }
+        .mobileHeaderLogoSize {
+            max-width: 96px;
+            width: 100%;
+        }
+
+        .visibleSearch {
+            position: absolute;
+            width: calc(100% - 40px);
+            left: 20px;
+            top: 16px;
+        }
+        .searchItem {
+            position: relative;
+            height: 30px;
+        }
+
+        .SearchBar {
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #95AFC0;
+            width: 100%;
+            visibility: hidden;
+            outline: none;
+            padding: 0 8px;
+        }
+        .searchIcon {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 17px;
+            height: 17px;
+            transition: all .3s;
+            right: 0;
+        }
+        .visibleSearch .searchIcon {
+            right: 7px;
+        }
+        .searchItem input[type="text"]::placeholder {
+            font-size: 11px;
+            font-weight: 500;
+            color: #778994;
+        }
+        .allProductsSearchList {
+            position: absolute;
+            right: 0;
+            top: 28px;
+            list-style: none;
+            background-color: #fff;
+            padding: 10px;
+            width: 100%;
+            border-radius: 3px;
+            border: 1px solid #95afc0;
+            transition: 0.3s all;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+        }
+
+        .allProductsSearchItem {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            cursor: pointer;
+        }
+
+        .allProductsSearchItem:not(:last-child) {
+            border-bottom: 1px solid #95afc05e;
+        }
+
+        .allProductsSearchImage {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .allProductSearchName {
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .hamburgerWrapper {
+            position: fixed;
+        }
+
+
+        .hamburgerMenu {
+            width: 230px;
+            padding: 0 20px;
+            background: #fff;
+            height: 100vh;
+            min-height: 768px;
+            position: absolute;
+            top: 0;
+            z-index: 9;
+            left: -230px;
+            position: fixed;
+            padding-top: 60px;
+            transition: all .3s;
+        }
+        .overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: none;
+            top: 0;
+            left: 230px;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index:2;
+        }
+        .hamburgerNavItemText {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2C2C2C;
+            cursor: pointer;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hamburgerNavRightArrow {
+            filter: brightness(0);
+        }
+        .mobileBottomNav {
+            background-color: #80BB01;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 60px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 0 15px rgb(108 99 255 / 10%);
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .mobileBottomNavInner {
+            position: relative;
+        }
+
+        .bottomNav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navItem {
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navItemInner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bottomNavButton {
+            background: transparent;
+            border: none;
+        }
+        .bottomNavIconSize {
+            width: 20px;
+            height: 20px;
+        }
+
+        .navItem .bottomNavIconSize {
+            filter: brightness(0) invert(1);
+        }
+
+        .bottomNavItemArea2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -25px;
+        }
+
+        .bottomNav2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navItem2 {
+            background-color: #fff;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: relative;
+            visibility: hidden;
+            border: 3px solid #fff;
+        }
+
+        .showNavItem2 {
+            visibility: visible;
+        }
+
+        .showNavItem2 .bottomNavIconSize {
+            filter: invert(1);
+        }
+
+        .navItem2::after {
+            content: "";
+            position: absolute;
+            width: 71px;
+            height: 71px;
+            border-radius: 50%;
+            z-index: -999999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .showHideText .bottomNavIconSize {
+            visibility: hidden;
+        }
+
+        .navItemsHome .bottomNavIconSize {
+            visibility: hidden;
+        }
+
+        .navItemsHome .bottomNavItemText {
+            font-size: 10px;
+        }
+
+        .bottomNavIconSize2 {
+            width: 20px;
+            height: 20px;
+        }
+        .searchContentItem {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 8px;
+        }
+
+        .searchContentItem:not(:last-child) {
+            padding-bottom: 8px;
+            border-bottom: 1px solid #95afc05e;
+        }
+
+        .searchProductImg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .searchProductName {
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .desktopHeader {
+            display: none;
+        }
+        @media (min-width : 426px) {
+            .visibleSearch {
+                width: calc(100% - 40px);
+            }
+        }
+        @media(min-width:768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .mobileHeaderWrapper {
+                position: relative;
+                display: none;
+            }
+
+            .mobileBottomNav {
+                display: none !important;
+            }
+
+            /* desktop Header*/
+
+            .desktopHeader {
+                display: block;
+            }
+            .navTop {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px 0;
+            }
+            .logo {
+                cursor: pointer;
+                float: left;
+            }
+            .headerSearch {
+                position: relative;
+                width: 50%;
+            }
+
+            .searchInput {
+                height: 45px;
+                border-radius: 50px;
+                border: 1px solid #80BB01;
+                width: 100%;
+                outline: none;
+                padding: 0 20px;
+                background: transparent;
+            }
+
+            .searchIcon {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 17px;
+                height: 17px;
+                transition: all .3s;
+                right: 20px;
+                cursor: pointer;
+            }
+
+            .menuIconInner {
+                display: flex;
+                align-items: center;
+            }
+
+            .menuIconList {
+                position: relative;
+            }
+
+            .menuIconList:not(:last-child) {
+                margin-right: 28.5px;
+            }
+
+            .menuIcon {
+                margin-right: 8px;
+            }
+
+            .menuIconSize {
+                width: 20px;
+                height: 17.57px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #2C2C2C;
+            }
+
+            .wishlistCount {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                background-image: linear-gradient(to right, #80BB01, #80BB01);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                top: -14px;
+                right: -7px;
+            }
+
+            .wishlistCountText {
+                color: #fff;
+                font-size: 11px;
+                font-weight: 500;
+                line-height: 14px;
+            }
+
+            .menuItem {
+                display: flex;
+            }
+
+            .menuItemList:not(:last-child) {
+                padding-right: 20px
+            }
+
+            .navTopIcon {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            .LoginAndRegister {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 24px;
+                color: #242424;
+                cursor: pointer;
+            }
+            .navBottom {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        @media(min-width:1025px) {
+            .categoriesMenuArea {
+                width: 280px;
+                height: 50px;
+            }
+
+            .categoriesMenu {
+                width: 280px;
+                height: 50px;
+                padding: 0 20px;
+            }
+
+            .headerMenu {
+                margin-left: 40px;
+            }
+
+            .mainMenuItem:not(:last-child) {
+                margin-right: 40px;
+            }
+
+            .rightMenuIconList:not(:first-child) {
+                margin-left: 40px;
+            }
+
+            .menuRightIconSize {
+                width: 18px;
+                height: 20px;
+            }
+
+            .mainMenuItemLink {
+                font-size: 15px;
+            }
+        }
+        /* header css close*/
+        @keyframes slidy {
+            0% { left: 0%; }
+            25% { left: 0%; }
+            35% { left: -100%; }
+            55% { left: -100%; }
+            65% { left: -200%; }
+            85% { left: -200%; }
+            100% { left: -300%; }
+        }
+
+        #slider { overflow: hidden;
+            position: relative;
+        }
+        #slider figure img {
+            width: 20%;
+            float: left;
+            height: 300px;
+        }
+        #slider figure {
+            position: relative;
+            width: 500%;
+            margin: 0;
+            left: 0;
+            text-align: left;
+            font-size: 0;
+            animation: 9s slidy infinite;
+        }
+        /* slider css close*/
+
+
+        .categoriesHeader {
+            display: none;
+        }
+        .categoriesBody {
+            overflow-x: scroll;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .categoriesBody::-webkit-scrollbar {
+            display: none;
+        }
+        .categoriesItemList {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 175%;
+        }
+
+        .categoriesItems {
+            text-align: center;
+            width: calc(25% - 10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .categoriesItemsBox {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(128, 187, 1 , 25%);
+            border-radius: 50%;
+            height: 70px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .categoriesItemsName {
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 14px;
+            margin-top: 3px;
+        }
+        .categoriesImage {
+            width: 50px;
+        }
+        @media screen and (min-width: 425px) {
+            .categoriesItemsBox {
+                background-color: #FFFFFF;
+                border: 1px solid rgba(128, 187, 1 , 25%);
+                border-radius: 50%;
+                height: 84px;
+                width: 84px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .categoriesItemsName {
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 14px;
+                margin-top: 3px;
+            }
+            .categoriesImage {
+                width: 65px;
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .categoriesItemList {
+                width: 100%;
+            }
+            #categories {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+            .categoriesHeader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 76px;
+            }
+            .categoriesHeaderWrapper {
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: 325px;
+            }
+            .categoriesHeaderImage {
+                height: 76.13px;
+                width: 107.21px;
+                position: absolute;
+                left: 75px;
+            }
+            .categoriesTitle {
+                position: absolute;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 32px;
+                color: #242424;
+                right: 75px;
+            }
+        }
+
+        /* Catagories css close */
+        
+        @media screen and  (min-width: 769px){
+            #slider figure img {
+                width: 20%;
+                float: left;
+                height: 700px;
+            }
+        }
+
+        /*all product*/
+
+        #allProduct,
+        #popularProduct,
+        #newProduct {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .allProductHeader,
+        .popularProductHeader,
+        .newProductHeader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 34px;
+        }
+        .allProductHeaderWrapper,
+        .popularProductHeaderWrapper,
+        .newProductHeaderWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-width: 200px;
+        }
+        .allProductHeaderImage,
+        .popularProductHeaderImage,
+        .newProductHeaderImage {
+            width: 48.74px;
+            height: 34px;
+            position: absolute;
+            left: 35px;
+        }
+        .allProductTitle,
+        .popularProductTitle,
+        .newProductTitle {
+            font-size: 18px;
+            line-height: 14px;
+            font-weight: 700;
+            position: absolute;
+            right: 40px;
+        }
+        .allProductsCartWrapper,
+        .popularProductsCartWrapper,
+        .newProductsCartWrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-content: center;
+            grid-gap: 10px;
+            padding-top: 15px;
+
+        }
+        .allProductsSingleProduct,
+        .popularProductsSingleProduct,
+        .newProductsSingleProduct {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s all;
+        }
+        .allProductsSingleProductTop,
+        .popularProductsSingleProductTop,
+        .newProductsSingleProductTop {
+            position: relative;
+        }
+        .allProductsProductImg,
+        .popularProductsProductImg,
+        .newProductsProductImg {
+            width: 100%;
+            padding: 18px 18px 0;
+        }
+        .allProductsCartTop,
+        .popularProductsCartTop,
+        .newProductsCartTop {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
+        .allNewLabel,
+        .popularNewLabel,
+        .newNewLabel {
+            position: absolute;
+            top: 13px;
+            left: 14px;
+            font-size: 10px;
+            line-height: 14px;
+            font-weight: 400;
+            border-radius: 3px;
+            background-color: #80BB01;
+            text-align: center;
+            padding: 3px 6px;
+            color: #fff;
+        }
+        .allProductsTopWishlistCartIconBox,
+        .popularProductsTopWishlistCartIconBox,
+        .newProductsTopWishlistCartIconBox {
+            position: absolute;
+            top: 13px;
+            right: 12px;
+        }
+        .allProductsQuickViewIconLabel, .allProductsWishlistIconLabel,
+        .popularProductsQuickViewIconLabel, .popularProductsWishlistIconLabel,
+        .newProductsQuickViewIconLabel, .newProductsWishlistIconLabel {
+            display: none;
+        }
+        .allProductsQuickViewIconBox,
+        .popularProductsQuickViewIconBox,
+        .newProductsQuickViewIconBox {
+            position: absolute;
+            top:34px;
+            right: 12px;
+        }
+        .allProductsTopWishlistCartIconBox, .allProductsQuickViewIconBox,
+        .popularProductsTopWishlistCartIconBox, .popularProductsQuickViewIconBox,
+        .newProductsTopWishlistCartIconBox, .newProductsQuickViewIconBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 19px;
+            width: 20px;
+            border-radius: 50px;
+            background-color: #F5F5F5;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .allProductsQuickViewIcon, .allProductWishlistIcon,
+        .popularProductsQuickViewIcon, .popularProductWishlistIcon,
+        .newProductsQuickViewIcon, .newProductWishlistIcon {
+            width: 8.57px;
+            height: 7.53px;
+        }
+        .allProductSingleProductBottom,
+        .popularProductSingleProductBottom,
+        .newProductSingleProductBottom {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .allProductsRating,
+        .popularProductsRating,
+        .newProductsRating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 12px;
+        }
+        .allProductsRating .yellow,
+        .popularProductsRating .yellow,
+        .newProductsRating .yellow {
+            color: #FDD835;
+        }
+        .allProductsRating .colorless,
+        .popularProductsRating .colorless,
+        .newProductsRating .colorless {
+            color: #E4E4E4;
+        }
+        .allProductsSingleProductName,
+        .popularProductsSingleProductName,
+        .newProductsSingleProductName {
+            font-size: 12px;
+            line-height: 17px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .allRegularPriceAndDeletePrice,
+        .popularRegularPriceAndDeletePrice,
+        .newRegularPriceAndDeletePrice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .allProductsSingleProductRegularPrice,
+        .popularProductsSingleProductRegularPrice,
+        .newProductsSingleProductRegularPrice {
+            font-size: 10px;
+            line-height: 13px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .allProductsSingleProductDeletePrice,
+        .popularProductsSingleProductDeletePrice,
+        .newProductsSingleProductDeletePrice {
+            display: none;
+        }
+        .allProductsCartBtn,
+        .popularProductsCartBtn,
+        .newProductsCartBtn {
+            width: 96px;
+            height: 21px;
+            border-radius: 50px;
+            background-color: #80BB01;
+            border: none;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            outline: none;
+        }
+        .allProductSectionButton,
+        .popularProductSectionButton,
+        .newProductSectionButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+        }
+        .allProductsViewAllBtn,
+        .popularProductsViewAllBtn,
+        .newProductsViewAllBtn {
+            width: 150px;
+            height: 33px;
+            display: block;
+            border: 1px solid #000;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 18px;
+            outline: none;
+        }
+        .allProductsCartBtn:hover,
+        .popularProductsCartBtn:hover,
+        .newProductsCartBtn:hover {
+            background-color: #242424;
+        }
+        .allProductsViewAllBtn:hover,
+        .popularProductsViewAllBtn:hover,
+        .newProductsViewAllBtn:hover {
+            background-color: #242424;
+            color:#fff;
+            transition: all .2s ease-in-out;
+            transform: scale(1.2);
+        }
+
+        @media screen and (min-width: 769px) {
+
+            #allProduct,
+            #popularProduct,
+            #newProduct {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+
+            .allProductHeader,
+            .popularProductHeader,
+            .newProductHeader {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 76px;
+            }
+            .allProductHeaderWrapper,
+            .popularProductHeaderWrapper,
+            .newProductHeaderWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                min-width: 325px;
+            }
+            .allProductHeaderImage,
+            .popularProductHeaderImage,
+            .newProductHeaderImage {
+                height: 76.13px;
+                width: 107.21px;
+                position: absolute;
+                left: 50px;
+            }
+            .allProductTitle,
+            .popularProductTitle,
+            .newProductTitle {
+                position: absolute;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 32px;
+                color: #242424;
+                right: 55px;
+            }
+            .allProductsCartWrapper,
+            .popularProductsCartWrapper,
+            .newProductsCartWrapper {
+                grid-gap: 40px;
+                grid-template-columns: repeat(4, 1fr);
+                padding-top: 30px;
+            }
+            .allProductsSingleProduct:hover,
+            .popularProductsSingleProduct:hover,
+            .newProductsSingleProduct:hover {
+                box-shadow: 2px 2px 5px rgba(44, 44, 44, 0.1), -2px -2px 5px rgba(44, 44, 44, 0.1);
+            }
+            .allProductsTopWishlist,
+            .popularProductsTopWishlist,
+            .newProductsTopWishlist {
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s all;
+            }
+            .allNewLabel,
+            .popularNewLabel,
+            .newNewLabel {
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                font-size: 16px;
+                line-height: 20px;
+                font-weight: 400;
+                border-radius: 3px;
+                background-color: #80BB01;
+                text-align: center;
+                color: #fff;
+            }
+            .allProductsProductImg,
+            .popularProductsProductImg,
+            .newProductsProductImg {
+                width: 100%;
+                padding: 40px 40px 0;
+            }
+            .allProductsTopWishlistCartIconBox,
+            .popularProductsTopWishlistCartIconBox,
+            .newProductsTopWishlistCartIconBox {
+                position: absolute;
+                top: 30px;
+                right: 25px;
+                margin-bottom: 14px;
+            }
+            .allProductsTopWishlistCartIconBox, .allProductsQuickViewIconBox,
+            .popularProductsTopWishlistCartIconBox, .popularProductsQuickViewIconBox,
+            .newProductsTopWishlistCartIconBox, .newProductsQuickViewIconBox {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                width: 30px;
+                border-radius: 50px;
+                background-color: #F5F5F5;
+                cursor: pointer;
+            }
+            .allProductsQuickViewIconBox,
+            .popularProductsQuickViewIconBox,
+            .newProductsQuickViewIconBox {
+                position: absolute;
+                top: 75px;
+            }
+            .allProductsQuickViewIcon, .allProductWishlistIcon,
+            .popularProductsQuickViewIcon, .popularProductWishlistIcon,
+            .newProductsQuickViewIcon, .newProductWishlistIcon {
+                width: 13.13px;
+                height: 11.54px;
+                z-index: 1;
+            }
+            .allProductsSingleProduct:hover .allProductsTopWishlist,
+            .popularProductsSingleProduct:hover .popularProductsTopWishlist,
+            .newProductsSingleProduct:hover .newProductsTopWishlist {
+                transform: translateX(0);
+                visibility: visible;
+                opacity: 1;
+            }
+            .allProductsCartLabel,
+            .popularProductsCartLabel,
+            .newProductsCartLabel {
+                background-color: #F5F5F5;
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                border-radius: 50px;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 18px;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s all;
+                height: 30px;
+                width: 75px;
+                padding-left: 10px;
+            }
+            .allProductsTopWishlistCartIconBox:hover .allProductsWishlistIconLabel,
+            .popularProductsTopWishlistCartIconBox:hover .popularProductsWishlistIconLabel,
+            .newProductsTopWishlistCartIconBox:hover .newProductsWishlistIconLabel {
+                opacity: 1;
+                visibility: visible;
+                width: 85px;
+            }
+            .allProductsTopWishlistCartIconBox:hover .allProductsQuickViewIconLabel,
+            .popularProductsTopWishlistCartIconBox:hover .popularProductsQuickViewIconLabel,
+            .newProductsTopWishlistCartIconBox:hover .newProductsQuickViewIconLabel {
+                opacity: 1;
+                visibility: visible;
+                width: 105px;
+            }
+            .allProductsSingleProduct:hover .allProductsTopWishlist,
+            .popularProductsSingleProduct:hover .popularProductsTopWishlist,
+            .newProductsSingleProduct:hover .newProductsTopWishlist {
+                transform: translateX(0);
+                visibility: visible;
+                opacity: 1;
+            }
+            .allProductsCartIconBox,
+            .popularProductsCartIconBox,
+            .newProductsCartIconBox {
+                display: none;
+            }
+            .allProductsQuickViewIconBox,
+            .popularProductsQuickViewIconBox,
+            .newProductsQuickViewIconBox {
+                display: flex;
+            }
+            .allProductSingleProductBottom,
+            .popularProductSingleProductBottom,
+            .newProductSingleProductBottom {
+                margin-bottom: 30px;
+            }
+            .allProductsRating,
+            .popularProductsRating,
+            .newProductsRating {
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 35px;
+            }
+            .allProductsSingleProductName,
+            .popularProductsSingleProductName,
+            .newProductsSingleProductName {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 32px;
+                color: #242424;
+            }
+            .allRegularPriceAndDeletePrice,
+            .popularRegularPriceAndDeletePrice,
+            .newRegularPriceAndDeletePrice {
+                position: relative;
+            }
+            .allProductsSingleProductRegularPrice,
+            .popularProductsSingleProductRegularPrice,
+            .newProductsSingleProductRegularPrice {
+                font-size: 22px;
+                line-height: 32px;
+                font-weight: 600;
+                text-align: center;
+            }
+            .allProductsSingleProductDeletePrice,
+            .popularProductsSingleProductDeletePrice,
+            .newProductsSingleProductDeletePrice {
+                display: block;
+                position: relative;
+                font-size: 14px;
+                font-weight: 400;
+                color: #989898;
+            }
+            .allProductsSingleProductDeletePrice::after,
+            .popularProductsSingleProductDeletePrice::after,
+            .newProductsSingleProductDeletePrice::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                transform: translateY(-50%);
+                height: 1px;
+                width: 100%;
+                background-color: #989898;
+            }
+            .allProductsSingleProductPrice,
+            .popularProductsSingleProductPrice,
+            .newProductsSingleProductPrice {
+                transform: translateY(0px);
+                transition: 0.3s all;
+            }
+            .allProductsSingleProduct:hover .allProductsSingleProductPrice,
+            .popularProductsSingleProduct:hover .popularProductsSingleProductPrice,
+            .newProductsSingleProduct:hover .newProductsSingleProductPrice {
+                transform: translateY(0, -10px);
+                visibility: hidden;
+                opacity: 0;
+            }
+            .allProductsCartBtn,
+            .popularProductsCartBtn,
+            .newProductsCartBtn {
+                position: absolute;
+                bottom: -35px;
+                height: 42px;
+                width: 150px;
+                border: none;
+                opacity: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 18px;
+                text-align: center;
+                visibility: hidden;
+                transition: 0.3s all;
+                cursor: pointer;
+                border-radius: 50px;
+                background-color: #80BB01;
+            }
+            .allProductsCartBtn:focus,
+            .popularProductsCartBtn:focus,
+            .newProductsCartBtn:focus {
+                outline: none;
+            }
+            .allProductsSingleProduct:hover .allProductsCartBtn,
+            .popularProductsSingleProduct:hover .popularProductsCartBtn,
+            .newProductsSingleProduct:hover .newProductsCartBtn {
+                transform: translateY(-38px);
+                opacity: 1;
+                visibility: visible;
+            }
+            .allProductSectionButton,
+            .popularProductSectionButton
+            .newProductSectionButton {
+                padding-top: 50px;
+            }
+            .allProductsViewAllBtn,
+            .popularProductsViewAllBtn,
+            .newProductsViewAllBtn {
+                width: 200px;
+                height: 45px;
+                display: block;
+                border: 1px solid #000;
+                border-radius: 50px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 18px;
+            }
+            .allProductsViewAllBtn:hover,
+            .popularProductsViewAllBtn:hover,
+            .newProductsViewAllBtn:hover {
+                background-color: #242424;
+                color:#fff;
+                transform: none;
+            }
+        }
+
+        /* New Product css close*/
+        #footer {
+            background-color: #242424;
+            color: #fff;
+            text-align: center;
+        }
+        .footerLogo {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .footerText {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 32px;
+            margin-bottom: 20px;
+        }
+        .footerIcon {
+            margin-right: 27px;
+            margin-bottom: 40px;
+        }
+        .footerLink a {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 32px;
+            color: #fff;
+            padding-right: 16px;
+        }
+        .footerLink {
+            margin-bottom: 47.5px;
+        }
+        #footer hr {
+            position: absolute;
+            width: 34%;
+            left: 33%;
+            color: #707070;
+            opacity: 0.2;
+        }
+        .copyright {
+            padding-top: 24.5px;
+            padding-bottom: 31px;
+        }
+
+    </style>
+</head>
+<body>
+    <main id="header">
+        <div class="mobileBottomNav ">
+            <div class="container">
+                <div class="mobileBottomNavInner">
+                    <div class="bottomNavItemArea">
+                        <ul class="bottomNav">
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+                                        <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24" height="23.986" viewBox="0 0 24 23.986">
+                                            <path id="fi-rr-home" d="M23.121,9.069,15.536,1.483a5.008,5.008,0,0,0-7.072,0L.879,9.069A2.978,2.978,0,0,0,0,11.19v9.817a3,3,0,0,0,3,3H21a3,3,0,0,0,3-3V11.19A2.978,2.978,0,0,0,23.121,9.069ZM15,22.007H9V18.073a3,3,0,0,1,6,0Zm7-1a1,1,0,0,1-1,1H17V18.073a5,5,0,0,0-10,0v3.934H3a1,1,0,0,1-1-1V11.19a1.008,1.008,0,0,1,.293-.707L9.878,2.9a3.008,3.008,0,0,1,4.244,0l7.585,7.586a1.008,1.008,0,0,1,.293.7Z" transform="translate(0 -0.021)" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+                                          <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24.655" height="21.663" viewBox="0 0 24.655 21.663">
+                                            <path id="fi-rr-heart" d="M17.97,1.917a6.572,6.572,0,0,0-5.648,3.389A6.572,6.572,0,0,0,6.675,1.917,6.983,6.983,0,0,0,0,9.156c0,4.669,4.915,9.769,9.037,13.226a5.108,5.108,0,0,0,6.572,0c4.122-3.457,9.037-8.557,9.037-13.226A6.983,6.983,0,0,0,17.97,1.917ZM14.289,20.812a3.053,3.053,0,0,1-3.933,0c-5.276-4.427-8.3-8.674-8.3-11.655A4.929,4.929,0,0,1,6.675,3.971,4.929,4.929,0,0,1,11.3,9.156a1.027,1.027,0,1,0,2.054,0A4.929,4.929,0,0,1,17.97,3.971a4.929,4.929,0,0,1,4.621,5.186c0,2.981-3.026,7.228-8.3,11.651Z" transform="translate(0.005 -1.917)" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem navItemsHome" id="navItemsHome">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+
+                                        <svg id="bottomNavCartIconSize" class="bottomNavIconSize" id="fi-rr-shopping-cart" xmlns="http://www.w3.org/2000/svg" width="26.888" height="27.782" viewBox="0 0 26.888 27.782">
+                                            <path id="Path_26" data-name="Path 26" d="M26.086,4.683a3.438,3.438,0,0,0-2.645-1.237H4.872l-.048-.4A3.446,3.446,0,0,0,1.4,0H1.149a1.149,1.149,0,0,0,0,2.3H1.4a1.148,1.148,0,0,1,1.14,1.014l1.58,13.438a5.743,5.743,0,0,0,5.7,5.073H21.822a1.149,1.149,0,1,0,0-2.3H9.828a3.446,3.446,0,0,1-3.239-2.3H20.28A5.743,5.743,0,0,0,25.931,12.5l.9-5a3.439,3.439,0,0,0-.747-2.821ZM24.578,7.1l-.9,5a3.446,3.446,0,0,1-3.4,2.835H6.224L5.143,5.743h18.3A1.149,1.149,0,0,1,24.578,7.1Z" fill="#fff"/>
+                                            <circle id="Ellipse_7" data-name="Ellipse 7" cx="2.5" cy="2.5" r="2.5" transform="translate(5.739 22.782)" fill="#fff"/>
+                                            <circle id="Ellipse_8" data-name="Ellipse 8" cx="2.5" cy="2.5" r="2.5" transform="translate(16.739 22.782)" fill="#fff"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+
+                                        <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="21.753" height="24.003" viewBox="0 0 21.753 24.003">
+                                            <path id="fi-rr-bell" d="M22.555,13.662l-1.9-6.836A9.321,9.321,0,0,0,2.576,7.3L1.105,13.915A5,5,0,0,0,5.986,20H7.1a5,5,0,0,0,9.8,0h.838a5,5,0,0,0,4.818-6.338ZM12,22a3,3,0,0,1-2.816-2h5.632A3,3,0,0,1,12,22Zm8.126-5.185A2.977,2.977,0,0,1,17.737,18H5.986a3,3,0,0,1-2.928-3.651l1.47-6.616a7.321,7.321,0,0,1,14.2-.372l1.9,6.836a2.977,2.977,0,0,1-.5,2.618Z" transform="translate(-0.986 -0.002)" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="navItem">
+                                <div class="navItemInner">
+                                    <button class="bottomNavButton">
+
+                                        <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="19.516" height="21.662" viewBox="0 0 19.516 21.662">
+                                            <path id="User" d="M2.3,21.662H0a9.816,9.816,0,0,1,3.475-5.439,10.163,10.163,0,0,1,12.566,0,9.815,9.815,0,0,1,3.474,5.438h-2.3a7.838,7.838,0,0,0-14.923,0Zm7.462-8.608A6.616,6.616,0,0,1,3.086,6.527,6.608,6.608,0,0,1,9.758,0,6.608,6.608,0,0,1,16.43,6.527,6.608,6.608,0,0,1,9.758,13.054Zm0-10.878A4.406,4.406,0,0,0,5.309,6.527a4.45,4.45,0,0,0,8.9,0A4.406,4.406,0,0,0,9.758,2.175Z" fill="#242424"/>
+                                          </svg>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bottomNavItemArea2">
+                        <ul class="bottomNav2">
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24" height="23.986" viewBox="0 0 24 23.986">
+                                    <path id="fi-rr-home" d="M23.121,9.069,15.536,1.483a5.008,5.008,0,0,0-7.072,0L.879,9.069A2.978,2.978,0,0,0,0,11.19v9.817a3,3,0,0,0,3,3H21a3,3,0,0,0,3-3V11.19A2.978,2.978,0,0,0,23.121,9.069ZM15,22.007H9V18.073a3,3,0,0,1,6,0Zm7-1a1,1,0,0,1-1,1H17V18.073a5,5,0,0,0-10,0v3.934H3a1,1,0,0,1-1-1V11.19a1.008,1.008,0,0,1,.293-.707L9.878,2.9a3.008,3.008,0,0,1,4.244,0l7.585,7.586a1.008,1.008,0,0,1,.293.7Z" transform="translate(0 -0.021)" fill="#242424"/>
+                                </svg>
+                            </li>
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="24.655" height="21.663" viewBox="0 0 24.655 21.663">
+                                    <path id="fi-rr-heart" d="M17.97,1.917a6.572,6.572,0,0,0-5.648,3.389A6.572,6.572,0,0,0,6.675,1.917,6.983,6.983,0,0,0,0,9.156c0,4.669,4.915,9.769,9.037,13.226a5.108,5.108,0,0,0,6.572,0c4.122-3.457,9.037-8.557,9.037-13.226A6.983,6.983,0,0,0,17.97,1.917ZM14.289,20.812a3.053,3.053,0,0,1-3.933,0c-5.276-4.427-8.3-8.674-8.3-11.655A4.929,4.929,0,0,1,6.675,3.971,4.929,4.929,0,0,1,11.3,9.156a1.027,1.027,0,1,0,2.054,0A4.929,4.929,0,0,1,17.97,3.971a4.929,4.929,0,0,1,4.621,5.186c0,2.981-3.026,7.228-8.3,11.651Z" transform="translate(0.005 -1.917)" fill="#242424"/>
+                                  </svg>
+                            </li>
+                            <li class="navItem2  showNavItem2 ">
+                                    <svg id="bottomNavCartIconSize" class="bottomNavIconSize" id="fi-rr-shopping-cart" xmlns="http://www.w3.org/2000/svg" width="26.888" height="27.782" viewBox="0 0 26.888 27.782">
+                                        <path id="Path_26" data-name="Path 26" d="M26.086,4.683a3.438,3.438,0,0,0-2.645-1.237H4.872l-.048-.4A3.446,3.446,0,0,0,1.4,0H1.149a1.149,1.149,0,0,0,0,2.3H1.4a1.148,1.148,0,0,1,1.14,1.014l1.58,13.438a5.743,5.743,0,0,0,5.7,5.073H21.822a1.149,1.149,0,1,0,0-2.3H9.828a3.446,3.446,0,0,1-3.239-2.3H20.28A5.743,5.743,0,0,0,25.931,12.5l.9-5a3.439,3.439,0,0,0-.747-2.821ZM24.578,7.1l-.9,5a3.446,3.446,0,0,1-3.4,2.835H6.224L5.143,5.743h18.3A1.149,1.149,0,0,1,24.578,7.1Z" fill="#fff"/>
+                                        <circle id="Ellipse_7" data-name="Ellipse 7" cx="2.5" cy="2.5" r="2.5" transform="translate(5.739 22.782)" fill="#fff"/>
+                                        <circle id="Ellipse_8" data-name="Ellipse 8" cx="2.5" cy="2.5" r="2.5" transform="translate(16.739 22.782)" fill="#fff"/>
+                                    </svg>
+                            </li>
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="21.753" height="24.003" viewBox="0 0 21.753 24.003">
+                                    <path id="fi-rr-bell" d="M22.555,13.662l-1.9-6.836A9.321,9.321,0,0,0,2.576,7.3L1.105,13.915A5,5,0,0,0,5.986,20H7.1a5,5,0,0,0,9.8,0h.838a5,5,0,0,0,4.818-6.338ZM12,22a3,3,0,0,1-2.816-2h5.632A3,3,0,0,1,12,22Zm8.126-5.185A2.977,2.977,0,0,1,17.737,18H5.986a3,3,0,0,1-2.928-3.651l1.47-6.616a7.321,7.321,0,0,1,14.2-.372l1.9,6.836a2.977,2.977,0,0,1-.5,2.618Z" transform="translate(-0.986 -0.002)" fill="#242424"/>
+                                </svg>
+                            </li>
+                            <li class="navItem2">
+                                <svg class="bottomNavIconSize" xmlns="http://www.w3.org/2000/svg" width="19.516" height="21.662" viewBox="0 0 19.516 21.662">
+                                    <path id="User" d="M2.3,21.662H0a9.816,9.816,0,0,1,3.475-5.439,10.163,10.163,0,0,1,12.566,0,9.815,9.815,0,0,1,3.474,5.438h-2.3a7.838,7.838,0,0,0-14.923,0Zm7.462-8.608A6.616,6.616,0,0,1,3.086,6.527,6.608,6.608,0,0,1,9.758,0,6.608,6.608,0,0,1,16.43,6.527,6.608,6.608,0,0,1,9.758,13.054Zm0-10.878A4.406,4.406,0,0,0,5.309,6.527a4.45,4.45,0,0,0,8.9,0A4.406,4.406,0,0,0,9.758,2.175Z" fill="#242424"/>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="mobileHeaderWrapper">
+            <div class="mobileHeaderArea">
+                <div class="container">
+                    <div class="mobileVersionHeader">
+                        <div class="mobileHeaderCol">
+                            <a class="hamburgerIcon" href="#" title="Menu">
+                                <span class="line line1"></span>
+                                <span class="line line2"></span>
+                                <span class="line line3"></span>
+                            </a>
+                        </div>
+                        <div class="mobileHeaderCol textCenter">
+                            <div id="logo">
+                                <img id="imglogo" class="mobileHeaderLogoSize" src="./images/Logo.png" alt="">
+                            </div>
+                        </div>
+                        <div class="mobileHeaderCol">
+                            <div class="visibleSearch">
+                                <input id="SearchBar" type="text" placeholder="Search Product"
+                                    class="SearchBar" autocomplete="off">
+
+                                <ul class="allProductsSearchList">
+                                    <li class="allProductsSearchItem">
+                                        <img class="allProductsSearchImage" src="./images/Image1.png" alt="">
+                                        <span class="allProducstSearchName">24mm Howell Lance</span>
+                                    </li>
+                                    <li class="allProductsSearchItem">
+                                        <img class="allProductsSearchImage" src="./images/Image2.png" alt="">
+                                        <span class="allProducstSearchName">24mm Howell Lance</span>
+                                    </li>
+                                    <li class="allProductsSearchItem">
+                                        <img class="allProductsSearchImage" src="./images/Image3.png" alt="">
+                                        <span class="allProducstSearchName">24mm Howell Lance</span>
+                                    </li>
+                                </ul>
+
+                                <svg id="searchIcon" class="searchIcon" xmlns="http://www.w3.org/2000/svg"
+                                    width="17" height="17" viewBox="0 0 17 17">
+                                    <path id="fi-rr-search"
+                                        d="M16.761,15.76l-4.222-4.222a7.085,7.085,0,1,0-1,1l4.222,4.222a.707.707,0,1,0,1-1Zm-9.7-3.037a5.659,5.659,0,1,1,5.659-5.659,5.659,5.659,0,0,1-5.659,5.659Z"
+                                        transform="translate(0.032 0.032)" fill="#2c2c2c" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburgerWrapper">
+                <div class="container">
+                    <div class="hamburgerMenu">
+                        <ul class="hamburgerNav">
+                            <li class="hamburgerNavItemText">
+                                <a href="">Fruits</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Vegetables</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Dairy</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Bakery</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Honey</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Frozen</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                            <li class="hamburgerNavItemText">
+                                <a href="">Seeds & Nuts</a>
+                                <svg class="hamburgerNavRightArrow" xmlns="http://www.w3.org/2000/svg" width="6.147" height="12" viewBox="0 0 6.147 12">
+                                    <path id="fi-rr-angle-small-left" d="M12.5,11.606a.857.857,0,0,0,0-1.212L8.565,6.463A.857.857,0,1,1,9.777,5.251L13.7,9.182a2.571,2.571,0,0,1,0,3.636L9.774,16.749a.857.857,0,1,1-1.212-1.212Z" transform="translate(-8.311 -5)" fill="#95afc0"/>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay"></div>
+        </header>
+
+        <header>
+            <div class="desktopHeader">
+                <div class="container">
+                    <div class="navTop">
+                        <div class="logo"><img src="./images/Logo.png" alt="econature"></div>
+                        <div class="headerSearch">
+                            <input class="searchInput" type="text" placeholder="Search for Product..">
+                            <svg class="searchIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="19.74"
+                                viewBox="0 0 20 19.74">
+                                <path id="Path_25" data-name="Path 25"
+                                    d="M16-2.92a.472.472,0,0,1-.11-.28.526.526,0,0,1,.07-.3,8.5,8.5,0,0,0,1.38-4.7,8.533,8.533,0,0,0-1.18-4.38,8.746,8.746,0,0,0-3.12-3.12,8.427,8.427,0,0,0-4.36-1.18A8.533,8.533,0,0,0,4.3-15.7a8.746,8.746,0,0,0-3.12,3.12A8.533,8.533,0,0,0,0-8.2,8.533,8.533,0,0,0,1.18-3.82,8.745,8.745,0,0,0,4.3-.7,8.533,8.533,0,0,0,8.68.48,8.6,8.6,0,0,0,11.34.06a8.976,8.976,0,0,0,2.34-1.18.4.4,0,0,1,.29-.09.363.363,0,0,1,.27.13L17.4,2.08q.02.02.16.14l.18.16.36.38a.388.388,0,0,0,.52,0L19.9,1.48a.352.352,0,0,0,.1-.26.352.352,0,0,0-.1-.26ZM13.92-4.16a6.311,6.311,0,0,1-.96,1.02,6.451,6.451,0,0,1-1.98,1.17,6.532,6.532,0,0,1-2.3.41,6.5,6.5,0,0,1-3.34-.9,6.477,6.477,0,0,1-2.4-2.4,6.5,6.5,0,0,1-.9-3.34,6.5,6.5,0,0,1,.9-3.34,6.477,6.477,0,0,1,2.4-2.4,6.5,6.5,0,0,1,3.34-.9,6.5,6.5,0,0,1,3.34.9,6.523,6.523,0,0,1,2.38,2.4,6.5,6.5,0,0,1,.9,3.34,6.469,6.469,0,0,1-.36,2.15A6.733,6.733,0,0,1,13.92-4.16Z"
+                                    transform="translate(0 16.88)" fill="#80bb01" />
+                            </svg>
+                        </div>
+                        <div class="menuIconList navTopIcon">
+                            <svg class="menuIconSize" xmlns="http://www.w3.org/2000/svg" width="15" height="20"
+                                viewBox="0 0 15 20">
+                                <g id="Account" transform="translate(-3)">
+                                    <path id="Path_1652" data-name="Path 1652"
+                                        d="M10.994,10.024A5.012,5.012,0,1,0,6,5.012a5,5,0,0,0,4.994,5.012Zm0-8.353A3.341,3.341,0,1,1,7.665,5.012a3.335,3.335,0,0,1,3.329-3.341Z"
+                                        transform="translate(-0.494)" fill="#2c2c2c" />
+                                    <path id="Path_1653" data-name="Path 1653"
+                                        d="M10.5,14A7.517,7.517,0,0,0,3,21.518a.833.833,0,1,0,1.667,0,5.833,5.833,0,1,1,11.667,0,.833.833,0,1,0,1.667,0A7.517,7.517,0,0,0,10.5,14Z"
+                                        transform="translate(0 -2.353)" fill="#2c2c2c" />
+                                </g>
+                            </svg>
+                            <p class="LoginAndRegister"> Login / Register </p>
+                        </div>
+                    </div>
+                    <div class="navBottom">
+                        <ul class="menuItem">
+                            <li class="menuItemList"><a href="#">Fruits</a></li>
+                            <li class="menuItemList"><a href="#">Vegetables</a></li>
+                            <li class="menuItemList"><a href="#">Dairy</a></li>
+                            <li class="menuItemList"><a href="#">Bakery</a></li>
+                            <li class="menuItemList"><a href="#">Honey</a></li>
+                            <li class="menuItemList"><a href="#">Frozen</a></li>
+                            <li class="menuItemList"><a href="#">Seeds & Nuts</a></li>
+                        </ul>
+
+                        <div class="menuIcon">
+                            <ul class="menuIconInner">
+                                <li class="menuIconList">
+                                    <svg class="menuIconSize" xmlns="http://www.w3.org/2000/svg" width="20" height="17.573"
+                                        viewBox="0 0 20 17.573">
+                                        <path id="Wishlist"
+                                            d="M14.577,1.917A5.331,5.331,0,0,0,10,4.666,5.331,5.331,0,0,0,5.414,1.917,5.664,5.664,0,0,0,0,7.79c0,3.788,3.987,7.924,7.33,10.729a4.143,4.143,0,0,0,5.331,0c3.344-2.8,7.33-6.941,7.33-10.729a5.664,5.664,0,0,0-5.414-5.873ZM11.59,17.244a2.476,2.476,0,0,1-3.19,0C4.12,13.653,1.665,10.208,1.665,7.79A4,4,0,0,1,5.414,3.583,4,4,0,0,1,9.162,7.79a.833.833,0,0,0,1.666,0,4,4,0,0,1,3.748-4.207A4,4,0,0,1,18.325,7.79c0,2.418-2.455,5.863-6.735,9.451Z"
+                                            transform="translate(0.005 -1.917)" fill="#2c2c2c" />
+                                    </svg>
+                                    <div class="wishlistCount">
+                                        <p class="wishlistCountText">0</p>
+                                    </div>
+                                </li>
+                                <li class="menuIconList">
+                                    <svg class="menuIconSize navIcon" xmlns="http://www.w3.org/2000/svg" width="17.852"
+                                        height="22.1" viewBox="0 0 17.852 22.1">
+                                        <path id="Cart"
+                                            d="M16.49,4.9a.7.7,0,0,0-.7-.645H13.308A4.445,4.445,0,0,0,8.882.125c-.069,0-.138,0-.207.005A4.416,4.416,0,0,0,4.453,4.259H1.959a.707.707,0,0,0-.7.645L0,19.046v.061a3.236,3.236,0,0,0,3.216,3.019c.059,0,.118,0,.178-.005H14.351c.061,0,.12.005.18.005a3.232,3.232,0,0,0,3.218-3.008.236.236,0,0,0,0-.08ZM5.146,8.122a.709.709,0,0,0,.709-.708V5.68h6.037V7.414a.708.708,0,0,0,1.417,0V5.68h1.828l1.2,13.433a1.832,1.832,0,0,1-1.967,1.59H3.385a1.825,1.825,0,0,1-1.968-1.569L2.609,5.68H4.438V7.414A.709.709,0,0,0,5.146,8.122Zm.717-3.863A3.04,3.04,0,0,1,8.875,1.413a3,3,0,0,1,3.013,2.846Z"
+                                            transform="translate(0.05 -0.075)" fill="#2c2c2c" stroke="#2c2c2c"
+                                            stroke-width="0.1" />
+                                    </svg>
+                                    <div class="wishlistCount">
+                                        <p class="wishlistCountText">0</p>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <img class="bannerImage" src="./images/Banner.png" alt="Banner"> -->
+        </header>
+    </main>
+
+    <!--Header close-->
+
+    <div id="slider">
+        <figure>
+            <img src="./images/Banner.png" alt="Banner">
+            <img src="./images/5.jpg" alt="Banner">
+            <img src="./images/4.jpg" alt="Banner">
+            <img src="./images/Banner.png" alt="Banner">
+        </figure>
+    </div>
+
+    <!--slider Close-->
+
+    <section id="categories">
+        <div class="categoriesHeader">
+            <div class="categoriesHeaderWrapper">
+                <img class="categoriesHeaderImage" src="./images/qqq.png" alt="">
+                <span class="categoriesTitle">Categories</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="categoriesBody">
+                <div class="categoriesItemList">
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 1.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Fruits</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 2.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Vegetables</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 3.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Dairy</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 4.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Bakery</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 5.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Honey</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 6.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Frozen</p>
+                    </div>
+                    <div class="categoriesItems">
+                        <div class="categoriesItemsBox">
+                            <img class="categoriesImage" src="./images/Image 7.png" alt="Fruits">
+                        </div>
+                        <p class="categoriesItemsName">Seeds & Nuts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Catagories close-->
+
+    <section id="newProduct">
+        <div class="container">
+            <div class="newProductHeader">
+                <div class="newProductHeaderWrapper">
+                    <img class="newProductHeaderImage" src="./images/qqq.png" alt="">
+                    <span class="newProductTitle">New Product</span>
+                </div>
+            </div>
+            <div class="newProductsCartWrapper">
+                <div class="newProductsSingleProduct">
+                    <div class="newProductsSingleProductTop">
+                        <span class="newNewLabel">New</span>
+                        <div class="newProductsTopWishlist">
+                            <div class="newProductsTopWishlistCartIconBox newProductsWishlistIconBox">
+                                <span class="newProductsCartLabel newProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="newProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="newProductsTopWishlistCartIconBox newProductsQuickViewIconBox">
+                                <span class="newProductsCartLabel newProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="newProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="newProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="newProductSingleProductBottom">
+                        <ul class="newProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="newProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="newRegularPriceAndDeletePrice">
+                            <p class="newProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="newProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="newProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="newProductsSingleProduct">
+                    <div class="newProductsSingleProductTop">
+                        <span class="newNewLabel">New</span>
+                        <div class="newProductsTopWishlist">
+                            <div class="newProductsTopWishlistCartIconBox newProductsWishlistIconBox">
+                                <span class="newProductsCartLabel newProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="newProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="newProductsTopWishlistCartIconBox newProductsQuickViewIconBox">
+                                <span class="newProductsCartLabel newProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="newProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="newProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="newProductSingleProductBottom">
+                        <ul class="newProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="newProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="newRegularPriceAndDeletePrice">
+                            <p class="newProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="newProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="newProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="newProductsSingleProduct">
+                    <div class="newProductsSingleProductTop">
+                        <span class="newNewLabel">New</span>
+                        <div class="newProductsTopWishlist">
+                            <div class="newProductsTopWishlistCartIconBox newProductsWishlistIconBox">
+                                <span class="newProductsCartLabel newProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="newProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="newProductsTopWishlistCartIconBox newProductsQuickViewIconBox">
+                                <span class="newProductsCartLabel newProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="newProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="newProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="newProductSingleProductBottom">
+                        <ul class="newProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="newProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="newRegularPriceAndDeletePrice">
+                            <p class="newProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="newProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="newProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="newProductsSingleProduct">
+                    <div class="newProductsSingleProductTop">
+                        <span class="newNewLabel">New</span>
+                        <div class="newProductsTopWishlist">
+                            <div class="newProductsTopWishlistCartIconBox newProductsWishlistIconBox">
+                                <span class="newProductsCartLabel newProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="newProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="newProductsTopWishlistCartIconBox newProductsQuickViewIconBox">
+                                <span class="newProductsCartLabel newProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="newProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="newProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="newProductSingleProductBottom">
+                        <ul class="newProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="newProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="newRegularPriceAndDeletePrice">
+                            <p class="newProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="newProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="newProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="newProductSectionButton">
+                <button class="newProductsViewAllBtn">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!--New Product Close-->
+
+    <section id="popularProduct">
+        <div class="container">
+            <div class="popularProductHeader">
+                <div class="popularProductHeaderWrapper">
+                    <img class="popularProductHeaderImage" src="./images/qqq.png" alt="">
+                    <span class="popularProductTitle">Popular Product</span>
+                </div>
+            </div>
+            <div class="popularProductsCartWrapper">
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="popularularProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="popularularProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="popularularProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popularProductsSingleProduct">
+                    <div class="popularProductsSingleProductTop">
+                        <span class="popularNewLabel">New</span>
+                        <div class="popularProductsTopWishlist">
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsWishlistIconBox">
+                                <span class="popularProductsCartLabel popularProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="popularProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="popularProductsTopWishlistCartIconBox popularProductsQuickViewIconBox">
+                                <span class="popularProductsCartLabel popularProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="popularProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="popularProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="popularProductSingleProductBottom">
+                        <ul class="popularProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="popularularProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="popularRegularPriceAndDeletePrice">
+                            <p class="popularProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="popularProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="popularProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popularProductSectionButton">
+                <button class="popularProductsViewAllBtn">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!--Popular Product Close-->
+
+    <section id="allProduct">
+        <div class="container">
+            <div class="allProductHeader">
+                <div class="allProductHeaderWrapper">
+                    <img class="allProductHeaderImage" src="./images/qqq.png" alt="">
+                    <span class="allProductTitle">All Product</span>
+                </div>
+            </div>
+            <div class="allProductsCartWrapper">
+                <div class="allProductsSingleProduct">
+                    <div class="allProductsSingleProductTop">
+                        <span class="allNewLabel">New</span>
+                        <div class="allProductsTopWishlist">
+                            <div class="allProductsTopWishlistCartIconBox allProductsWishlistIconBox">
+                                <span class="allProductsCartLabel allProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="allProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="allProductsTopWishlistCartIconBox allProductsQuickViewIconBox">
+                                <span class="allProductsCartLabel allProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="allProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="allProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="allProductSingleProductBottom">
+                        <ul class="allProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="allProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="allRegularPriceAndDeletePrice">
+                            <p class="allProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="allProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="allProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="allProductsSingleProduct">
+                    <div class="allProductsSingleProductTop">
+                        <span class="allNewLabel">New</span>
+                        <div class="allProductsTopWishlist">
+                            <div class="allProductsTopWishlistCartIconBox allProductsWishlistIconBox">
+                                <span class="allProductsCartLabel allProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="allProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="allProductsTopWishlistCartIconBox allProductsQuickViewIconBox">
+                                <span class="allProductsCartLabel allProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="allProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="allProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="allProductSingleProductBottom">
+                        <ul class="allProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="allProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="allRegularPriceAndDeletePrice">
+                            <p class="allProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="allProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="allProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="allProductsSingleProduct">
+                    <div class="allProductsSingleProductTop">
+                        <span class="allNewLabel">New</span>
+                        <div class="allProductsTopWishlist">
+                            <div class="allProductsTopWishlistCartIconBox allProductsWishlistIconBox">
+                                <span class="allProductsCartLabel allProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="allProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="allProductsTopWishlistCartIconBox allProductsQuickViewIconBox">
+                                <span class="allProductsCartLabel allProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="allProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="allProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="allProductSingleProductBottom">
+                        <ul class="allProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="allProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="allRegularPriceAndDeletePrice">
+                            <p class="allProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="allProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="allProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="allProductsSingleProduct">
+                    <div class="allProductsSingleProductTop">
+                        <span class="allNewLabel">New</span>
+                        <div class="allProductsTopWishlist">
+                            <div class="allProductsTopWishlistCartIconBox allProductsWishlistIconBox">
+                                <span class="allProductsCartLabel allProductsWishlistIconLabel">Wishlist</span>
+                                <svg class="allProductWishlistIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="13.18" viewBox="0 0 15 13.18">
+                                    <path id="fi-rr-heart" d="M10.931,1.917A4,4,0,0,0,7.5,3.979,4,4,0,0,0,4.059,1.917,4.248,4.248,0,0,0,0,6.321c0,2.841,2.99,5.943,5.5,8.047a3.107,3.107,0,0,0,4,0c2.508-2.1,5.5-5.206,5.5-8.047a4.248,4.248,0,0,0-4.061-4.4Zm-2.24,11.5a1.857,1.857,0,0,1-2.393,0c-3.21-2.693-5.051-5.277-5.051-7.091A3,3,0,0,1,4.059,3.166,3,3,0,0,1,6.87,6.321a.625.625,0,1,0,1.249,0,3,3,0,0,1,2.811-3.155,3,3,0,0,1,2.811,3.155c0,1.814-1.841,4.4-5.051,7.088Z" transform="translate(0.005 -1.917)"/>
+                                </svg>
+                            </div>
+                            <div class="allProductsTopWishlistCartIconBox allProductsQuickViewIconBox">
+                                <span class="allProductsCartLabel allProductsQuickViewIconLabel">Quick View</span>
+                                <svg class="allProductsQuickViewIcon" xmlns="http://www.w3.org/2000/svg" width="15" height="11.677" viewBox="0 0 15 11.677">
+                                    <g id="fi-rr-eye" transform="translate(0.004 -2.655)">
+                                    <path id="Path_1654" data-name="Path 1654" d="M14.537,6.881A8.274,8.274,0,0,0,7.5,2.655,8.274,8.274,0,0,0,.454,6.881a3.066,3.066,0,0,0,0,3.225A8.274,8.274,0,0,0,7.5,14.332a8.274,8.274,0,0,0,7.042-4.226A3.066,3.066,0,0,0,14.537,6.881ZM13.472,9.452A7.069,7.069,0,0,1,7.5,13.082,7.069,7.069,0,0,1,1.519,9.452a1.823,1.823,0,0,1,0-1.917A7.069,7.069,0,0,1,7.5,3.9a7.063,7.063,0,0,1,5.977,3.631A1.823,1.823,0,0,1,13.472,9.452Z" transform="translate(0 0)"/>
+                                    <path id="Path_1655" data-name="Path 1655" d="M10.125,7a3.123,3.123,0,1,0,3.125,3.123A3.124,3.124,0,0,0,10.125,7Zm0,5A1.874,1.874,0,1,1,12,10.123,1.874,1.874,0,0,1,10.125,12Z" transform="translate(-2.629 -1.629)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div><img class="allProductsProductImg" src="./images/image1.png" alt=""></div>
+                    </div>
+
+                    <div class="allProductSingleProductBottom">
+                        <ul class="allProductsRating">
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star yellow"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                            <li class="RatingIcon">
+                                <i class="icofont-star colorless"></i>
+                            </li>
+                        </ul>
+                        <a href="singleProduct.html"><p class="allProductsSingleProductName">Organic Cavendish Banana</p></a>
+
+                        <div class="allRegularPriceAndDeletePrice">
+                            <p class="allProductsSingleProductRegularPrice">$8.22</p>
+                            <p class="allProductsSingleProductDeletePrice">$10.45</p>
+                            <button type="button" class="allProductsCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="allProductSectionButton">
+                <button class="allProductsViewAllBtn">View All Products</button>
+            </div>
+        </div>
+    </section>
+    <!--All Product Close-->
+    <footer id="footer">
+        <div class="container">
+            <div class="footerBody">
+                <img class="footerLogo" src="./images/Section 1.svg" alt="econature">
+                <p class="footerText">There are many variations of passages of Lorem Ipsum available, but the majority have suffered <br> alteration in some form, by injected humour, or randomised words which <br> don't look even slightly believable. </p>
+                <div class="footerSocialIcon">
+                    <svg class="footerIcon" xmlns="http://www.w3.org/2000/svg" width="26.888" height="27.074" viewBox="0 0 26.888 27.074">
+                        <path id="Path_31" data-name="Path 31" d="M17.08-14.184h-22.9a1.963,1.963,0,0,0-1.422.572,1.851,1.851,0,0,0-.587,1.375V10.943a1.851,1.851,0,0,0,.587,1.375,1.963,1.963,0,0,0,1.422.572h22.9a1.926,1.926,0,0,0,1.391-.572,1.851,1.851,0,0,0,.587-1.375V-12.237a1.851,1.851,0,0,0-.587-1.375A1.926,1.926,0,0,0,17.08-14.184ZM.329,8.47H-3.72V-3.738H.329ZM-1.711-5.407h-.031a2.2,2.2,0,0,1-1.607-.6,2.027,2.027,0,0,1-.618-1.514,2,2,0,0,1,.634-1.514,2.3,2.3,0,0,1,1.653-.6,2.246,2.246,0,0,1,1.638.6A2.027,2.027,0,0,1,.576-7.524,2.027,2.027,0,0,1-.042-6.009,2.288,2.288,0,0,1-1.711-5.407ZM14.948,8.47H10.9V1.918A3.508,3.508,0,0,0,10.435-.06,1.779,1.779,0,0,0,8.859-.833,2.132,2.132,0,0,0,7.5-.369,2.9,2.9,0,0,0,6.758.651a3.216,3.216,0,0,0-.124.989V8.47H2.585V2.783q.031-5.81,0-6.521H6.634v1.731a4.062,4.062,0,0,1,3.647-2.009,4.338,4.338,0,0,1,3.338,1.329,5.92,5.92,0,0,1,1.329,4.141Z" transform="translate(7.83 14.184)" fill="#fff"/>
+                    </svg>
+                    <svg class="footerIcon" xmlns="http://www.w3.org/2000/svg" width="30.566" height="30.566" viewBox="0 0 30.566 30.566">
+                        <path id="Path_32" data-name="Path 32" d="M6.358-7.854A7.7,7.7,0,0,0,2.4-6.788,8.053,8.053,0,0,0-.5-3.9,7.644,7.644,0,0,0-1.585.073,7.729,7.729,0,0,0-.519,4.044a7.9,7.9,0,0,0,2.905,2.89A7.811,7.811,0,0,0,6.373,8a7.729,7.729,0,0,0,3.971-1.066,7.932,7.932,0,0,0,2.89-2.89A7.729,7.729,0,0,0,14.3.073,7.729,7.729,0,0,0,13.234-3.9a7.932,7.932,0,0,0-2.89-2.89A7.757,7.757,0,0,0,6.358-7.854Zm0,12.826A4.755,4.755,0,0,1,3.9,4.307,4.983,4.983,0,0,1,2.108,2.515,4.755,4.755,0,0,1,1.443.058a4.674,4.674,0,0,1,.664-2.442A5.022,5.022,0,0,1,3.9-4.161a4.755,4.755,0,0,1,2.457-.664,4.755,4.755,0,0,1,2.457.664,5.022,5.022,0,0,1,1.793,1.777A4.674,4.674,0,0,1,11.272.058a4.755,4.755,0,0,1-.664,2.457A4.983,4.983,0,0,1,8.815,4.307,4.755,4.755,0,0,1,6.358,4.972Zm6.49-20.182H-.133A8.535,8.535,0,0,0-4.552-14a8.7,8.7,0,0,0-3.183,3.2A8.624,8.624,0,0,0-8.91-6.4V6.548a8.624,8.624,0,0,0,1.174,4.4,8.7,8.7,0,0,0,3.183,3.2,8.535,8.535,0,0,0,4.42,1.205h12.98a8.7,8.7,0,0,0,4.45-1.205A8.887,8.887,0,0,0,20.451,11a8.7,8.7,0,0,0,1.205-4.45V-6.4a8.7,8.7,0,0,0-1.205-4.45A8.887,8.887,0,0,0,17.3-14,8.7,8.7,0,0,0,12.848-15.21ZM18.627,6.548a5.755,5.755,0,0,1-5.779,5.779H-.133a5.6,5.6,0,0,1-2.89-.773,5.749,5.749,0,0,1-2.086-2.1,5.678,5.678,0,0,1-.773-2.905V-6.4a5.678,5.678,0,0,1,.773-2.905,5.749,5.749,0,0,1,2.086-2.1,5.6,5.6,0,0,1,2.89-.773h12.98a5.678,5.678,0,0,1,2.905.773,5.712,5.712,0,0,1,2.1,2.1A5.678,5.678,0,0,1,18.627-6.4Zm-4.2-16.72a2.023,2.023,0,0,0-1.483.618,2.023,2.023,0,0,0-.618,1.483A1.973,1.973,0,0,0,12.94-6.6a2.049,2.049,0,0,0,1.483.6,2,2,0,0,0,1.468-.6,2,2,0,0,0,.6-1.468,2.049,2.049,0,0,0-.6-1.483A1.973,1.973,0,0,0,14.424-10.172Z" transform="translate(8.91 15.21)" fill="#fff"/>
+                    </svg>
+                    <svg class="footerIcon" xmlns="http://www.w3.org/2000/svg" width="27.074" height="21.974" viewBox="0 0 27.074 21.974">
+                        <path id="Path_33" data-name="Path 33" d="M19.19-10.112a11.894,11.894,0,0,1-3.214.9,5.149,5.149,0,0,0,1.5-1.3,5.537,5.537,0,0,0,.943-1.793,10.127,10.127,0,0,1-3.523,1.36,5.11,5.11,0,0,0-1.808-1.3,5.56,5.56,0,0,0-2.241-.464,5.322,5.322,0,0,0-2.782.757A5.646,5.646,0,0,0,6.055-9.926a5.407,5.407,0,0,0-.742,2.782,5.609,5.609,0,0,0,.124,1.267,15.669,15.669,0,0,1-6.4-1.731A15.827,15.827,0,0,1-6-11.688,5.6,5.6,0,0,0-6.74-8.922a5.47,5.47,0,0,0,.664,2.658A5.6,5.6,0,0,0-4.268-4.271a5.04,5.04,0,0,1-2.5-.711v.093A5.365,5.365,0,0,0-5.52-1.366,5.463,5.463,0,0,0-2.321.551,5.625,5.625,0,0,1-3.8.736,5.21,5.21,0,0,1-4.824.643,5.355,5.355,0,0,0-2.877,3.379a5.382,5.382,0,0,0,3.214,1.1,10.634,10.634,0,0,1-3.2,1.762,11.162,11.162,0,0,1-3.693.618q-.4,0-1.236-.062h-.093A15.5,15.5,0,0,0,.646,9.266,16,16,0,0,0,7.414,7.844a15.019,15.019,0,0,0,4.945-3.709A16.578,16.578,0,0,0,15.388-.933,15.893,15.893,0,0,0,16.408-6.5v-.742A11.189,11.189,0,0,0,19.19-10.112Z" transform="translate(7.884 12.708)" fill="#fff"/>
+                    </svg>
+                    <svg class="footerIcon" xmlns="http://www.w3.org/2000/svg" width="12.548" height="27.043" viewBox="0 0 12.548 27.043">
+                        <path id="Path_34" data-name="Path 34" d="M8.894-5.407H4.629V-8.219a1.3,1.3,0,0,1,.4-1.051A1.2,1.2,0,0,1,5.8-9.517H8.832v-4.636L4.66-14.184a5.933,5.933,0,0,0-3.523.989,4.76,4.76,0,0,0-1.7,2.225A6.93,6.93,0,0,0-1-8.5v3.091H-3.654v4.76H-1V12.859H4.629V-.647H8.4Z" transform="translate(3.654 14.184)" fill="#fff"/>
+                    </svg>
+                </div>
+                <div class="footerLink">
+                    <a href="#">Terms</a>
+                    <a href="#">privacy</a>
+                    <a href="#">More</a>
+                </div>
+                <hr>
+                <p class="copyright">Copyright © Econature. All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+    <!--Footer Close-->
+</body>
+</html>
